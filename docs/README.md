@@ -8,8 +8,6 @@ title: Smart-Water-Tank
 
 # Smart-Water-Tank
 
----
-
 ## Team
 -  E/19/087, Dissanayaka M.A.S.R, [email](mailto:e19087@eng.pdn.ac.lk)
 -  E/19/260, Neranji W.K.G.A.G, [email](mailto:e19260@eng.pdn.ac.lk)
