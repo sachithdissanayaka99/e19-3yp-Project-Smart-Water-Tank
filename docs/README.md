@@ -1,4 +1,7 @@
 ---
+layout: home
+permalink: index.html
+
 # Please update this with your repository name and project title
 repository-name: e19-3yp-project-Smart-Water-Tank
 title: Smart-Water-Tank
