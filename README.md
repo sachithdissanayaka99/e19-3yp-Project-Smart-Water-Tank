@@ -1,57 +1,56 @@
-___
-# DELETE THIS INSTRUCTIONS AND ADD AN INTRODUCTION ABOUT YOUR PROJECT
-___
+# Smart Water Tank and Tap Control System
 
-# eYY-3yp-project-template
+The Smart Water Tank and Tap Control System is an integrated solution for managing water resources efficiently. This project combines hardware components like a Smart Water Tank with level monitoring and a Smart Tap Control System with software components including a web application and a mobile app. It's designed to help users conserve water, reduce wastage, and gain real-time insights into their water consumption.
 
-This is a sample repository you can use for your Embedded Systems project. Once you followed these instructions, remove the text and add a brief introduction to here.
+## Features
 
-### Enable GitHub Pages
+- **Smart Water Tank:**
+  - Monitor water levels in real-time.
+  - Automated water filling for optimal usage.
+  - Leak detection and alerts.
+  - Seamless integration with the Smart Tap Control System.
 
-You can put the things to be shown in GitHub pages into the _docs/_ folder. Both html and md file formats are supported. You need to go to settings and enable GitHub pages and select _main_ branch and _docs_ folder from the dropdowns, as shown in the below image.
+- **Smart Tap Control System:**
+  - Smart valves and taps for precise water control.
+  - Real-time water consumption monitoring.
+  - Remote water distribution control.
+  - Timed schedules for specific water usage needs.
 
-![image](https://user-images.githubusercontent.com/11540782/98789936-028d3600-2429-11eb-84be-aaba665fdc75.png)
+- **Web Application:**
+  - User-friendly web interface for system control and management.
+  - Visual representation of water tank levels and consumption data.
+  - Alerts and notifications for important events.
 
-### Special Configurations
+- **Mobile Application:**
+  - Mobile app for on-the-go control and monitoring.
+  - Real-time notifications and alerts.
+  - User-friendly dashboard with water usage insights.
 
-These projects will be automatically added into [https://projects.ce.pdn.ac.lk](). If you like to show more details about your project on this site, you can fill the parameters in the file, _/docs/index.json_
+## Getting Started
 
-```
-{
-  "title": "This is the title of the project",
-  "team": [
-    {
-      "name": "Team Member Name 1",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
-    },
-    {
-      "name": "Team Member Name 2",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
-    },
-    {
-      "name": "Team Member Name 3",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
-    }
-  ],
-  "supervisors": [
-    {
-      "name": "Dr. Supervisor 1",
-      "email": "email@eng.pdn.ac.lk"
-    },
-    {
-      "name": "Supervisor 2",
-      "email": "email@eng.pdn.ac.lk"
-    }
-  ],
-  "tags": ["Web", "Embedded Systems"]
-}
-```
+1. **Installation and Setup:**
+   - Clone this repository to your local machine.
+   - Follow the installation and configuration guides in the project's documentation.
 
-Once you filled this _index.json_ file, please verify the syntax is correct. (You can use [this](https://jsonlint.com/) tool).
+2. **Usage:**
+   - Access the web application or mobile app to control and monitor your water system.
 
-### Page Theme
+3. **Contributing:**
+   - Contributions are welcome! Feel free to contribute by adding new features, fixing bugs, or improving the documentation.
 
-A custom theme integrated with this GitHub Page, which is based on [github.com/cepdnaclk/eYY-project-theme](https://github.com/cepdnaclk/eYY-project-theme). If you like to remove this default theme, you can remove the file, _docs/\_config.yml_ and use HTML based website.
+4. **License:**
+   - This project is open-source and is released under the [insert license name] license. Please review the license for more details.
+
+## Support and Feedback
+
+If you encounter any issues, have questions, or want to provide feedback, please open an issue on this repository.
+
+## Acknowledgments
+
+We would like to acknowledge and thank all the contributors to this project for their efforts in creating an innovative solution for efficient water management.
+
+## License
+
+This project is licensed under the [insert license name] license - see the [LICENSE](LICENSE) file for details.
+
+Let's make a positive impact on water conservation together!
