@@ -117,6 +117,14 @@ This project is licensed under the [License Name]. Please refer to the LICENSE f
 
 15. **IoT Connectivity:**
     - Ensure that the hardware components can connect to the internet reliably and securely, possibly through Wi-Fi or other IoT connectivity solutions.
+   
+
+## Links
+
+- [Project Repository](https://github.com/cepdnaclk/e19-3yp-Project-Smart-Water-Tank)
+- [Project Page](https://cepdnaclk.github.io/e19-3yp-Project-Smart-Water-Tank/)
+- [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
+- [University of Peradeniya](https://eng.pdn.ac.lk/)
 
 
 
