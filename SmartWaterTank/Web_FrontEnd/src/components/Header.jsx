@@ -1,57 +1,21 @@
-import React, { useState } from 'react';
-import {
-  MDBNavbar,
-  MDBNavbarNav,
-  MDBNavbarItem,
-  MDBNavbarLink,
-  MDBNavbarToggler,
-  MDBContainer,
-  MDBIcon,
-  MDBCollapse
-} from 'mdb-react-ui-kit';
+import React from 'react';
 
 export default function Header() {
-  const [showBasic, setShowBasic] = useState(false);
   return (
-    <header>
-      <MDBNavbar expand='lg' light bgColor='white'>
-        <MDBContainer fluid>
-          <MDBNavbarToggler
-            onClick={() => setShowBasic(!showBasic)}
-            aria-controls='navbarExample01'
-            aria-expanded='false'
-            aria-label='Toggle navigation'
-          >
-            <MDBIcon fas icon='bars' />
-          </MDBNavbarToggler>
-          <MDBCollapse show={showBasic}>
-            <MDBNavbarNav right className='mb-2 mb-lg-0'>
-              <MDBNavbarItem active>
-                <MDBNavbarLink aria-current='page' href='#'>
-                  Home
-                </MDBNavbarLink>
-              </MDBNavbarItem>
-              <MDBNavbarItem>
-                <MDBNavbarLink href='#'>Features</MDBNavbarLink>
-              </MDBNavbarItem>
-              <MDBNavbarItem>
-                <MDBNavbarLink href='#'>Pricing</MDBNavbarLink>
-              </MDBNavbarItem>
-              <MDBNavbarItem>
-                <MDBNavbarLink href='#'>About</MDBNavbarLink>
-              </MDBNavbarItem>
-            </MDBNavbarNav>
-          </MDBCollapse>
-        </MDBContainer>
-      </MDBNavbar>
+    <header className="d-flex flex-wrap justify-content-center py-3  border-bottom">
+      <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <svg className="bi " width="40" height="32"><use xlinkHref="#bootstrap"></use></svg>
+        <span className="fs-4">Simple header</span>
+      </a>
 
-      <div className='p-5 text-center bg-light'>
-        <h1 className='mb-3'>Heading</h1>
-        <h4 className='mb-3'>Subheading</h4>
-        <a className='btn btn-primary' href='' role='button'>
-          Call to action
-        </a>
-      </div>
+      <ul className="nav nav-pills">
+        <li className="nav-item"><a href="#" className="nav-link active" aria-current="page">Home</a></li>
+        <li className="nav-item"><a href="#" className="nav-link">Features</a></li>
+        <li className="nav-item"><a href="#" className="nav-link">Pricing</a></li>
+        <li className="nav-item"><a href="#" className="nav-link">FAQs</a></li>
+        <li className="nav-item"><a href="#" className="nav-link">About</a></li>
+      </ul>
     </header>
   );
 }
+
