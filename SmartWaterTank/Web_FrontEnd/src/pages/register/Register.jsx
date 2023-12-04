@@ -8,15 +8,15 @@ export default function Register() {
         <div className="mask d-flex align-items-center h-100 gradient-custom-3">
           <div className="container h-100">
             <div className="row d-flex justify-content-center align-items-center h-100">
-              <div className="col-12 col-md-9 col-lg-7 col-xl-6">
-                <div className="card" style={{ borderRadius: '15px' }}>
+              <div className="col-12 col-md-9 col-lg-7 col-xl-5">
+                <div className="card" style={{ borderRadius: '15px', height: '40%', width : '500px'}}>
                   <div className="card-body p-5">
-                    <h2 className="text-uppercase text-center mb-5">
+                    <h2 className="text-uppercase text-center mb-3">
                       Create an account
                     </h2>
 
                     <form>
-                      <div className="mb-4">
+                      <div className="mb-1">
                         <label className="form-label" htmlFor="form3Example1cg">
                           Your Name
                         </label>
@@ -27,7 +27,7 @@ export default function Register() {
                         />
                       </div>
 
-                      <div className="mb-4">
+                      <div className="mb-1">
                         <label className="form-label" htmlFor="form3Example3cg">
                           Your Email
                         </label>
@@ -38,7 +38,7 @@ export default function Register() {
                         />
                       </div>
 
-                      <div className="mb-4">
+                      <div className="mb-1">
                         <label className="form-label" htmlFor="form3Example4cg">
                           Password
                         </label>
@@ -49,7 +49,7 @@ export default function Register() {
                         />
                       </div>
 
-                      <div className="mb-4">
+                      <div className="mb-1">
                         <label
                           className="form-label"
                           htmlFor="form3Example4cdg"

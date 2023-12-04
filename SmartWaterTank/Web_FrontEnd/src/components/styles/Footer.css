@@ -1,0 +1,16 @@
+/* Add this to your CSS */
+.secondary {
+    color: black;
+  }
+
+.footer{
+    background-color: #333;
+}
+
+/* Add this CSS to your styles/Footer.css or your main styles file */
+
+.text-reset:hover svg {
+    color: orange; /* Replace 'your_hover_color' with the desired color code */
+  }
+  
+  
