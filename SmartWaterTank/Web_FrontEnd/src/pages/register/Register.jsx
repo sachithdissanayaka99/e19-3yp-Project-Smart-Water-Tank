@@ -9,7 +9,7 @@ export default function Register() {
           <div className="container h-100">
             <div className="row d-flex justify-content-center align-items-center h-100">
               <div className="col-12 col-md-9 col-lg-7 col-xl-5">
-                <div className="card" style={{ borderRadius: '15px', height: '40%', width : '500px'}}>
+                <div className="card" style={{ borderRadius: '15px', height: '600px', width : '500px'}}>
                   <div className="card-body p-5">
                     <h2 className="text-uppercase text-center mb-3">
                       Create an account
@@ -84,11 +84,13 @@ export default function Register() {
                       <div className="d-grid">
                         <button
                           type="button"
-                          className="btn btn-success btn-lg gradient-custom-4 text-body"
+                          className="btn btn-lg gradient-custom-4"
+                          style={{ color: 'white !important' }}
                         >
                           Register
                         </button>
                       </div>
+
 
                       <p className="text-center text-muted mt-2 mb-0">
                         Have already an account?{" "}
