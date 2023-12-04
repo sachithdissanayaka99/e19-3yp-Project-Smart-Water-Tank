@@ -1,0 +1,57 @@
+.logo{
+    width: 60px;
+    height: 40px;
+    margin: 0px;
+}
+
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  h3 {
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    color: black;
+    margin: 0;
+    animation: fadeIn 1s ease-in-out; /* Adjust the duration and timing function as needed */
+  }
+
+  
+/* styles/Header.css */
+
+header {
+    background-color: #333; /* Set background color */
+  }
+  
+  .link-body-emphasis {
+    color: white; 
+  }
+  
+  .tank-icon {
+    fill: white; /* Set the fill color of the tank icon to white */
+  }
+  
+  .nav-pills .nav-link {
+    color: white; /* Set text color for navigation links to white */
+  }
+  
+  .nav-pills .nav-link:hover {
+    background-color: #555; /* Change background color on hover */
+    color: orange;
+  }
+
+  .tank-i{
+    color: white;
+  }
+
+  .tank-i:hover{
+    color: orange; /* Set the fill color of the tank icon to white */
+  }
+  
+  
