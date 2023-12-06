@@ -1,7 +1,7 @@
 import React from "react";
-import "./Register.css";
+import "./login.css";
 
-export default function Register() {
+export default function Login() {
   return (
     <div className="main">
       <section className="vh-100 bg-image">
@@ -9,27 +9,16 @@ export default function Register() {
           <div className="container h-100">
             <div className="row d-flex justify-content-center align-items-center h-100">
               <div className="col-12 col-md-9 col-lg-7 col-xl-5">
-                <div className="card" style={{ borderRadius: '15px', height: '600px', width : '500px'}}>
+                <div className="card" style={{ borderRadius: '15px', height: '450px', width : '450px'}}>
                   <div className="card-body p-5">
                     <h2 className="text-uppercase text-center mb-3">
-                      Create an account
+                      Login
                     </h2>
 
                     <form>
                       <div className="mb-1">
-                        <label className="form-label" htmlFor="form3Example1cg">
-                          Your Name
-                        </label>
-                        <input
-                          type="text"
-                          id="form3Example1cg"
-                          className="form-control form-control-lg"
-                        />
-                      </div>
-
-                      <div className="mb-1">
                         <label className="form-label" htmlFor="form3Example3cg">
-                          Your Email
+                          Email
                         </label>
                         <input
                           type="email"
@@ -49,20 +38,7 @@ export default function Register() {
                         />
                       </div>
 
-                      <div className="mb-1">
-                        <label
-                          className="form-label"
-                          htmlFor="form3Example4cdg"
-                        >
-                          Repeat your password
-                        </label>
-                        <input
-                          type="password"
-                          id="form3Example4cdg"
-                          className="form-control form-control-lg"
-                        />
-                      </div>
-
+                     
                       <div className="form-check mb-4">
                         <input
                           className="form-check-input"
@@ -87,17 +63,9 @@ export default function Register() {
                           className="btn btn-lg gradient-custom-4"
                           style={{ color: 'white !important' }}
                         >
-                          Register
+                          Login
                         </button>
                       </div>
-
-
-                      <p className="text-center text-muted mt-2 mb-0">
-                        Have already an account?{" "}
-                        <a href="/Login" className="fw-bold text-body">
-                          <u>Login here</u>
-                        </a>
-                      </p>
                     </form>
                   </div>
                 </div>
