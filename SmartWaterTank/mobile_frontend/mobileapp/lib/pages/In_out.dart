@@ -29,7 +29,7 @@ class _in_out extends State<In_out>{
         
 
       ) ,
-         body: Text('location page'),
+         body: Text('under construction'),
       
       
     );

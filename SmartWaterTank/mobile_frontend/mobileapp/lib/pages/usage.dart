@@ -29,7 +29,7 @@ class _usage extends State<Usage>{
         
 
       ) ,
-         body: Text('location page'),
+         body: Text('under construction'),
       
       
     );
