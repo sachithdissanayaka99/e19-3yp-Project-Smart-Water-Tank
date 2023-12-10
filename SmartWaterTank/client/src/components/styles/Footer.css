@@ -1,0 +1,102 @@
+/* styles/Footer.css */
+
+.footer {
+  background-color: #001247;
+  color: white;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: orange;
+}
+
+.footer section {
+  padding: 20px 0;
+}
+
+.footer h6 {
+  color: orange;
+}
+
+.footer p {
+  margin: 0.5rem 0;
+}
+
+.footer svg {
+  font-size: 24px;
+}
+
+.footer .social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer .social-icons a {
+  margin-right: 15px;
+}
+
+.footer .container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.footer .text-center p {
+  margin-bottom: 0;
+}
+
+.footer .text-center h6 {
+  margin-bottom: 10px;
+}
+
+.footer .text-center p,
+.footer .text-center h6 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer .text-center h6 {
+  font-weight: bold;
+}
+
+.footer .text-center a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer .text-center a:hover {
+  color: orange;
+}
+
+.footer .text-center h6:hover {
+  color: orange;
+}
+
+.footer .copyright {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.footer .copyright h6 {
+  color: #333;
+  font-size: 18px;
+}
+
+.footer .copyright h6:hover {
+  color: orange;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .footer .social-icons {
+    flex-wrap: wrap;
+  }
+
+  .footer .social-icons a {
+    margin: 0 10px 10px 0;
+  }
+}
