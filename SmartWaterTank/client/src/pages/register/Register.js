@@ -1,60 +1,58 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../style/login.css';
 import AuthService from '../../services/AuthServices';
-import { Link } from 'react-router-dom';
-import Validation from './RegisterValidation';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { showLoading } from '../../redux/alertsSlice'; 
+import { hideLoading } from '../../redux/alertsSlice';
+
 
 export default function Register() {
+
+  const dispatch = useDispatch(); 
   const navigate = useNavigate();
-
-  const [values, setValues] = useState({
-    fullName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
-
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (event) => {
-    setValues((prev) => ({ ...prev, [event.target.name]: event.target.value }));
-  };
-
-  const handleSubmit = async (event) => {
+  const onSubmit = async(event) => {
     event.preventDefault();
+    const fullName = event.target.fullName.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    const confirmPassword = event.target.confirmPassword.value;
 
-    setErrors((prevErrors) => {
-      const newErrors = Validation(values);
-      return newErrors;
-    });
+    console.log('Received values from form:', { fullName, email, password, confirmPassword });
 
-    if (
-      errors.fullName === '' &&
-      errors.email === '' &&
-      errors.password === '' &&
-      errors.confirmPassword === ''
-    ) {
-      const fullName = values.fullName.toString();
-      const email = values.email.toString();
-      const password = values.password.toString();
+    try {
+      dispatch(showLoading())
+      if (password === confirmPassword) {
+        const registrationResult = await AuthService.register(
+          fullName,
+          email,
+          password,
+          
+        );
+        dispatch(hideLoading())
 
-      try {
-        const registerResult = await AuthService.register(fullName, email, password);
-
-        if (registerResult === 2) {
-          toast.success('Registration successful');
+        if (registrationResult.success) {
+          toast.success(registrationResult.message);
+        
           setTimeout(() => {
-            toast('Redirecting to Login page');
+            toast("Redirecting to login page");
             navigate('/login');
           }, 2000);
-        } else {
-          toast.error(registerResult.message);
+        }else{
+          toast.error(registrationResult.message)
         }
-      } catch (error) {
-        console.error('Register error:', error);
+        
+      }else{
+        toast.error("Passwords do not match");
+        
       }
+      
+
+    } catch (error) {
+      dispatch(hideLoading())
+
+      console.error('Registration error:', error);
     }
   };
 
@@ -63,20 +61,19 @@ export default function Register() {
       <section className="vh-100">
         <div className="container py-5 h-100">
           <div className="row d-flex align-items-center justify-content-center h-100">
-          <div className="col-md-8 col-lg-7 col-xl-6 img-container">
-            <img src="./assets/images/logo.png" className="img-fluid img-3d" alt="" />
-          </div>
+            <div className="col-md-8 col-lg-7 col-xl-6">
+              <img src="./assets/images/logo.png" className="img-fluid" alt="" />
+            </div>
             <div className="col-md-7 col-lg-4 col-xl-4 offset-xl-1 form_input">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={onSubmit}>
                 <div className="form-outline mb-4">
                   <input
                     type="text"
                     id="form1Example1"
                     className="form-control form-control-lg"
                     name="fullName"
-                    onChange={handleChange}
                   />
-                  <label className="form-label" htmlFor="form1Example1">
+                  <label className="form-label" htmlFor="form1Example13">
                     Full Name
                   </label>
                 </div>
@@ -88,10 +85,8 @@ export default function Register() {
                     id="form1Example2"
                     className="form-control form-control-lg"
                     name="email"
-                    onChange={handleChange}
                   />
-                  {errors.email}
-                  <label className="form-label" htmlFor="form1Example2">
+                  <label className="form-label" htmlFor="form1Example13">
                     Email address
                   </label>
                 </div>
@@ -103,10 +98,8 @@ export default function Register() {
                     id="form1Example3"
                     className="form-control form-control-lg"
                     name="password"
-                    onChange={handleChange}
                   />
-                  {errors.password}
-                  <label className="form-label" htmlFor="form1Example3">
+                  <label className="form-label" htmlFor="form1Example23">
                     Password
                   </label>
                 </div>
@@ -117,16 +110,14 @@ export default function Register() {
                     id="form1Example4"
                     className="form-control form-control-lg"
                     name="confirmPassword"
-                    onChange={handleChange}
                   />
-                  {errors.confirmPassword}
-                  <label className="form-label" htmlFor="form1Example4">
+                  <label className="form-label" htmlFor="form1Example23">
                     Confirm Password
                   </label>
                 </div>
 
                 <div className="d-flex align-items-right mb-4">
-                  <Link to="/login">Already have an account?</Link>
+                  <a href="/login">Already have an account?</a>
                 </div>
 
                 {/* Submit button */}
