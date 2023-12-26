@@ -7,7 +7,7 @@ import {
   faGoogle,
   faInstagram,
   faLinkedin,
-  faGithub,
+  
 } from '@fortawesome/free-brands-svg-icons';
 import {
   faGem,
@@ -41,9 +41,7 @@ export default function Footer() {
             <a href="https://www.linkedin.com/" className="me-4 text-reset">
               <FontAwesomeIcon icon={faLinkedin} />
             </a>
-            <a href="https://github.com/" className="me-4 text-reset">
-              <FontAwesomeIcon icon={faGithub} />
-            </a>
+           
           </div>
 
         </section>
@@ -56,7 +54,7 @@ export default function Footer() {
                   iTank
                 </h6>
                 <p>
-                  Smart solution for the home water management system 
+                  Feel Free to contact us for your any problems 
                 </p>
               </div>
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -64,10 +62,7 @@ export default function Footer() {
                   Products
                 </h6>
                 <p>
-                  <a href="#!" className="text-reset">Water Tank Controller</a>
-                </p>
-                <p>
-                  <a href="#!" className="text-reset">Smart Tap</a>
+                  <a href="#!" className="text-reset">iTank</a>
                 </p>
                 
                 
@@ -78,7 +73,7 @@ export default function Footer() {
                 <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
                 <p>
                   <FontAwesomeIcon icon={faEnvelope} className="me-3" />
-                  itank@gmail.com
+                 iTank@gmail.com
                 </p>
                 <p><FontAwesomeIcon icon={faPhone} className="me-3" /> +94 705156085</p>
               </div>
@@ -87,7 +82,7 @@ export default function Footer() {
         </section>
         <div className="text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
           © 2023 Copyright<br/>
-          <h6 className="text-reset fw-bold">iTank</h6>
+          <h6 className="text-reset fw-bold">iTanks</h6>
         </div>
       </footer>
     </div>

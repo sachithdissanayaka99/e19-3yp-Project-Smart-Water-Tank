@@ -3,10 +3,13 @@ import '../style/login.css';
 import AuthService from '../../services/AuthServices';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom'; 
+import { useDispatch  } from 'react-redux';
+import { showLoading } from '../../redux/alertsSlice';
+import { hideLoading } from '../../redux/alertsSlice'; 
 
 export default function Login() {
 
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   
   const onSubmit = async(event) => {
@@ -17,20 +20,21 @@ export default function Login() {
     console.log('Received values from form:', { email, password});
 
     try {
+        dispatch(showLoading())
         const loginResult = await AuthService.login(
           email,
           password,
           
         );
-
+        dispatch(hideLoading())
         if (loginResult.success) {
           toast.success(loginResult.message);
-          toast.success(loginResult.data)
+          
           localStorage.setItem("token",loginResult.data)
         
           setTimeout(() =>  {
             toast("Redirecting to Home page");
-            navigate('/');
+            navigate('/userHome');
           }, 2000);
         }else{
           toast.error(loginResult.message)
@@ -39,7 +43,7 @@ export default function Login() {
       
 
     } catch (error) {
-
+      dispatch(hideLoading()) 
       console.error('Login error:', error);
     }
   };

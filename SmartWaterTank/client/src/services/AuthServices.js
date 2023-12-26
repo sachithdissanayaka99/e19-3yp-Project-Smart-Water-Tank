@@ -1,24 +1,21 @@
-// AuthService.js
 import axios from 'axios';
 
 
 const register = async (fullName, email, password) => {
-  
   try {
-    const response = await axios.post('http://localhost:8081/register', {
+    const response = await axios.post('api/user/register', {
       fullName,
       email,
       password,
-    })
+    });
 
+    console.log('Registration successful:', response.data);
 
-      
-      return response.data.serverStatus;
-// You might want to return some data from the response
+    return response.data; 
   } catch (error) {
-    // Handle errors
+
     console.error('Registration failed:', error);
-    throw error; // Rethrow the error to let the component handle it
+    throw error; 
   }
 };
 
@@ -29,24 +26,43 @@ const login = async (email, password) => {
       password,
     });
 
-    // Check if the response status is successful (e.g., 200 OK)
     if (response.status === 200) {
       console.log('Login successful:', response.data);
       return response.data;
     } else {
-      // Handle other status codes (e.g., 401 Unauthorized)
+
       console.error('Login failed:', response.status, response.data);
       throw new Error('Login failed');
     }
   } catch (error) {
-    // Handle network errors or other exceptions
+   
     console.error('Login failed:', error.message);
     throw error;
   }
 };
 
+const getData = async () => {
+  try {
+    const response = await axios.post('api/user/get-user-info-by-id',{},
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+ 
+      }
+    );
+
+  
+    
+  } catch (error) {
+      console.log(error)
+  }
+
+  
+};
 
 export default {
   register,
   login,
+  getData,
 };

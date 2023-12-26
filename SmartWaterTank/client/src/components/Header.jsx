@@ -16,7 +16,7 @@ export default function Header({ isAuthenticated = 'signout' }) {
       <Link to="/" className="d-flex align-items-center mb-4 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
         <svg className="bi " width="20" height="42"><use xlinkHref="#bootstrap"></use></svg>
         <h3 className='tank-i'>
-        <FontAwesomeIcon icon={faTint} className="tank-icon" />
+          <FontAwesomeIcon icon={faTint} className="tank-icon" />
           iTank
         </h3>
       </Link>
