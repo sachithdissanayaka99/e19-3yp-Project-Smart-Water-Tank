@@ -1,6 +1,6 @@
 # Smart Water Management System
 
-The Smart Water Management System is a project aimed at maintaining water levels using a smart water tank and smart tap control system. It provides an efficient and automated solution for monitoring and controlling water flow, along with web and mobile applications for easy access and management.
+This project provides a complete solution for efficient water management. It consists of a Smart Water Tank with level monitoring and a Smart Tap Control System. Users can control their water usage through a web app and mobile app. The system aims to save water and reduce wastage while offering real-time insights into water consumption.
 
 ## Features
 

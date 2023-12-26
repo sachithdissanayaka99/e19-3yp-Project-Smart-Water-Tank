@@ -1,0 +1,75 @@
+/* styles/Header.css */
+
+/* Header styles */
+header {
+  background-color: #001247;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo styles */
+.logo {
+  width: 60px;
+  height: 40px;
+  margin: 0px;
+  fill: white; /* Change the logo color to white */
+}
+
+/* Navbar styles */
+.nav-pills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-item {
+  margin-right: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: orange;
+}
+
+/* Active link styles */
+.nav-item.active .nav-link {
+  background-color: #555;
+  color: orange;
+}
+
+.tank-i{
+  color: white;
+}
+
+.tank-i:hover{
+
+  color: orange;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-pills {
+    margin-top: 15px;
+  }
+
+  .nav-item {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
