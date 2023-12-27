@@ -1,75 +1,59 @@
+.logo{
+    width: 60px;
+    height: 40px;
+    margin: 0px;
+}
+
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  h3 {
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    color: black;
+    margin: 0;
+    animation: fadeIn 1s ease-in-out; /* Adjust the duration and timing function as needed */
+  }
+
+  
 /* styles/Header.css */
 
-/* Header styles */
 header {
-  background-color: #001247;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Logo styles */
-.logo {
-  width: 60px;
-  height: 40px;
-  margin: 0px;
-  fill: white; /* Change the logo color to white */
-}
-
-/* Navbar styles */
-.nav-pills {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-.nav-item {
-  margin-right: 20px;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: color 0.3s ease-in-out;
-}
-
-.nav-link:hover {
-  color: orange;
-}
-
-/* Active link styles */
-.nav-item.active .nav-link {
-  background-color: #555;
-  color: orange;
-}
-
-.tank-i{
-  color: white;
-}
-
-.tank-i:hover{
-
-  color: orange;
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
+    background-color: #001247; /* Set background color */
+  }
+  
+  .link-body-emphasis {
+    color: white; 
+  }
+  
+  .tank-icon {
+    fill: white; /* Set the fill color of the tank icon to white */
+  }
+  
+  .nav-pills .nav-link {
+    text-decoration: none;
+    color: white; /* Set text color for navigation links to white */
+    margin-right: 5px;
+  }
+  
+  .nav-pills .nav-link:hover {
+    background-color: #555; /* Change background color on hover */
+    color: orange;
   }
 
-  .nav-pills {
-    margin-top: 15px;
+  .tank-i{
+    color: white;
   }
 
-  .nav-item {
-    margin-right: 0;
-    margin-bottom: 10px;
+  .tank-i:hover{
+    color: orange; /* Set the fill color of the tank icon to white */
   }
-}
+  
+  

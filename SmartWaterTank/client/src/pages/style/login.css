@@ -1,125 +1,136 @@
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+
+/* login.css */
+
 /* General styles */
 body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: #f8f9fa;
-}
-
-/* Form container styles */
-.form-container {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  margin: auto;
-  max-width: 400px;
-}
-
-/* Image styles */
-.img-fluid {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Form styles */
-.form-outline {
-  position: relative;
-}
-
-.form-outline input {
-  width: 100%;
-  padding: 15px;
-  margin-bottom: 20px; /* Add space between input fields */
-  border: 1px solid #d2d8dd;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border-color 0.3s ease;
-}
-
-.form-outline input:focus {
-  border: 1px solid #007bff;
-}
-
-.form-outline label {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  padding: 5px;
-  font-size: 14px;
-  background-color: #ffffff;
-  transition: all 0.3s ease;
-}
-
-.form-outline input:focus + label,
-.form-outline input:not(:placeholder-shown) + label {
-  transform: translateY(-100%) scale(0.8);
-  color: #007bff;
-}
-
-/* Error message styles */
-.error-message {
-  color: #dc3545;
-  font-size: 14px;
-  margin-top: -10px;
-  margin-bottom: 10px;
-}
-
-/* Submit button styles */
-.btn-primary {
-  background-color: #007bff;
-  color: #fff;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-
-/* Container for the form */
-.form_input {
-  
-  padding: 60px 20px;
-  border: 1px solid #ced4da;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Link styles */
-a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Divider styles */
-.divider {
-  position: relative;
-  margin: 20px 0;
-}
-
-.divider p {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ffffff;
-  padding: 0 10px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .form-container {
-    padding: 0 15px;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
   }
-}
+  
+  /* Header styles */
+  .container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #007bff;
+  }
+  
+  /* Form container styles */
+  .form-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+
+  /* Image styles */
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Form styles */
+  .form-outline {
+    position: relative;
+  }
+  
+  .form-outline input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 17px;
+  }
+
+  .form-outline input:focus {
+    border: 1px solid #007bff;
+  }
+  
+  .form-outline label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  
+  .form-outline input:focus + label,
+  .form-outline input:not(:placeholder-shown) + label {
+    transform: translateY(-18px) scale(0.8);
+    background-color: #fff;
+    color: #007bff;
+  }
+  
+  /* Checkbox styles */
+  .form-check input {
+    margin-right: 8px;
+  }
+  
+  /* Forgot password styles */
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Divider styles */
+  .divider p {
+    background-color: #fff;
+    padding: 0 10px;
+  }
+  
+  /* Submit button styles */
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Social media button styles */
+  .btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  
+  .btn-facebook {
+    background-color: #3b5998;
+  }
+  
+  .btn-twitter {
+    background-color: #55acee;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 15px;
+    }
+  }
+  
+  .form_input {
+    background-color: white;
+    padding: 60px 20px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  }
+  
