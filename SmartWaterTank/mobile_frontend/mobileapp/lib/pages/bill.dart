@@ -30,7 +30,7 @@ class _Bill extends State<Bill>{
 
       ) ,
      
-         body: Text('location page'),
+         body: Text('under construction'),
       
       
     );

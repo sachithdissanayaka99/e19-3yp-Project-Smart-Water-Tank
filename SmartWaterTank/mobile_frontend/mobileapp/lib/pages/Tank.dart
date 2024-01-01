@@ -28,7 +28,7 @@ class _tank extends State<Tank>{
         
 
       ) ,
-      body: Text('Loading screen'),
+      body: Text('under construction'),
       
       
     );
