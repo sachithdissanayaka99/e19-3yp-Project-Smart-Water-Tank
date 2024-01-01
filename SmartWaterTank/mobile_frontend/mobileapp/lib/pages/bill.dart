@@ -30,7 +30,18 @@ class _Bill extends State<Bill>{
 
       ) ,
      
-         body: Text('under construction'),
+         body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text('Your monthly bill so far:'),
+            Container(
+              margin: EdgeInsets.all(10),
+              color: Colors.grey,
+            ),
+            Text('Set Monthly bill margin'),
+
+          ],
+         ),
       
       
     );
