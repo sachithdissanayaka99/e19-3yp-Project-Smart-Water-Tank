@@ -1,3 +1,5 @@
+// Home.js
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLayerGroup, faUsers, faToggleOn } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +8,7 @@ import './Home.css';
 export default function Home() {
   return (
     <div>
+      {/* Bootstrap Carousel */}
       <div id="carouselExampleDark" className="carousel carousel-dark slide" data-bs-ride="carousel">
         <div className="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>

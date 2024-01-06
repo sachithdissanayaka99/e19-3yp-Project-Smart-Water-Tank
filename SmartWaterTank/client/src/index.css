@@ -31,3 +31,20 @@ code {
   color: #fff !important; 
  
 }
+
+.remix-icon{
+  font-size: 26px;
+  color: black !important;
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+.page-title{
+  font-size: 25px;
+  font-weight: bold ;
+  color: rgba(0, 0, 0, 0.659);
+}
+
+.anchors{
+  cursor: pointer !important;
+}

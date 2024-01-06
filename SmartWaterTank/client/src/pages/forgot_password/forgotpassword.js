@@ -15,11 +15,11 @@ export default function ForgotPassword() {
         <div className="container py-5 h-100">
           <div className="row d-flex align-items-center justify-content-center h-100">
             <div className="col-md-8 col-lg-7 col-xl-6">
-              <img src="./assets/images/logo.png" className="img-fluid" alt="" />
+              <img src="./assets/images/main.png" className="img-fluid" alt="" />
             </div>
             <div className="col-md-7 col-lg-4 col-xl-4 offset-xl-1 form_input">
               <form onSubmit={onSubmit}>
-                
+                {/* Email input */}
                 <div className="form-outline mb-4">
                   <input
                     type="email"
@@ -32,7 +32,7 @@ export default function ForgotPassword() {
                   </label>
                 </div>
 
-               
+                {/* Submit button */}
                 <button
                   type="submit"
                   className="btn btn-primary btn-lg btn-block w-100"

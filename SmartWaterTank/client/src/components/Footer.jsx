@@ -7,7 +7,7 @@ import {
   faGoogle,
   faInstagram,
   faLinkedin,
-  
+  faGithub,
 } from '@fortawesome/free-brands-svg-icons';
 import {
   faGem,
@@ -41,7 +41,9 @@ export default function Footer() {
             <a href="https://www.linkedin.com/" className="me-4 text-reset">
               <FontAwesomeIcon icon={faLinkedin} />
             </a>
-           
+            <a href="https://github.com/" className="me-4 text-reset">
+              <FontAwesomeIcon icon={faGithub} />
+            </a>
           </div>
 
         </section>
@@ -82,7 +84,7 @@ export default function Footer() {
         </section>
         <div className="text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
           © 2023 Copyright<br/>
-          <h6 className="text-reset fw-bold">iTanks</h6>
+          <h6 className="text-reset fw-bold">iTank</h6>
         </div>
       </footer>
     </div>
