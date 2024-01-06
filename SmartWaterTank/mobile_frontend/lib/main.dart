@@ -69,10 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   title: AxisTitle(text: "Liters"),
                 ),
                 series: <ChartSeries>[
-                  ColumnSeries<SalesData, String>(
+                  ColumnSeries<WaterData, String>(
                     dataSource: getColumnData(),
-                    xValueMapper: (SalesData sales, _) => sales.x,
-                    yValueMapper: (SalesData sales, _) => sales.y,
+                    xValueMapper: (WaterData level, _) => level.x,
+                    yValueMapper: (WaterData level, _) => level.y,
                     dataLabelSettings: DataLabelSettings(isVisible: true),
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -86,22 +86,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class SalesData {
+class WaterData {
   String x; // Week days
   double y; // Liters
-  SalesData(this.x, this.y);
+  WaterData(this.x, this.y);
 }
 
-List<SalesData> getColumnData() {
-  // This function returns a list of SalesData which represents the data for each day of the week (x-axis) and the amount of water in liters (y-axis).
-  List<SalesData> columnData = <SalesData>[
-    SalesData('Monday', 35),
-    SalesData('Tuesday', 28),
-    SalesData('Wednesday', 34),
-    SalesData('Thursday', 32),
-    SalesData('Friday', 40),
-    SalesData('Saturday', 45),
-    SalesData('Sunday', 50),
+List<WaterData> getColumnData() {
+  // This function returns a list of WaterData which represents the data for each day of the week (x-axis) and the amount of water in liters (y-axis).
+  List<WaterData> columnData = <WaterData>[
+    WaterData('Monday', 35),
+    WaterData('Tuesday', 28),
+    WaterData('Wednesday', 34),
+    WaterData('Thursday', 32),
+    WaterData('Friday', 40),
+    WaterData('Saturday', 45),
+    WaterData('Sunday', 50),
   ];
   return columnData;
 }
