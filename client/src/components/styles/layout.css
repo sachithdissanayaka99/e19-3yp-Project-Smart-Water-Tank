@@ -1,0 +1,172 @@
+.main {
+  padding: 10px;
+  height: 102vh;
+}
+
+.sidebar {
+  background-color: #001247;
+  border-radius: 5px;
+  box-shadow: 0 0 2px gray;
+  margin-right: 20px;
+  height: 100vh;
+  padding: 10px;
+  width: 300px;
+}
+
+.collapsed-sidebar {
+  background-color: #001247;
+  border-radius: 8px;
+  box-shadow: 0 0 2px gray;
+  margin-right: 20px;
+  margin-bottom: 2%;
+  height: 100vh;
+  padding: 12px;
+}
+
+.sidebar-header-image {
+  display: none;
+}
+
+.collapsed-sidebar-header-image {
+  width: 50px;
+  height: 50px;
+}
+
+.collapsed-sidebar-header-image img {
+  width: 50px;
+  height: 50px;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 2px gray;
+  margin-bottom: 3vh;
+  height: 8vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.body {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 2px gray;
+  height: 89vh;
+  width: 100%;
+  padding: 15px;
+  color: black;
+}
+
+.sidebar-header img {
+
+  width: 100%;
+  height: 200px;
+  
+}
+
+.collapsed-sidebar-header img {
+  display: none;
+}
+
+.menu {
+  margin-top: 60px;
+}
+
+.menu-item {
+  margin-top: 30px;
+}
+
+.menu-item a {
+  color: rgba(255, 255, 255, 0.735);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.menu-item i {
+  color: rgba(255, 255, 255, 0.741);
+  text-decoration: none;
+  font-size: 18px;
+  margin: 0 15px;
+}
+
+.menu-item.active {
+  background-color: #030b25;
+  color: #fff;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.anchor {
+  color: black;
+  font-size: 25px;
+  margin-right: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.info-use {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.anchor:hover {
+  color: orange;
+}
+
+.info-use i {
+  margin-top: 4px;
+}
+
+.remix-icon:hover {
+  color: orange !important;
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    padding: 10px;
+    height: 122vh;
+  }
+
+  .body {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 2px gray;
+    height: 108vh;
+    width: 100%;
+    padding: 15px;
+    color: black;
+  }
+
+  .collapsed-sidebar {
+    background-color: #001247;
+    border-radius: 8px;
+    box-shadow: 0 0 2px gray;
+    margin-right: 20px;
+    margin-bottom: 2%;
+    height: 119vh;
+    padding: 12px;
+  }
+  .sidebar {
+    display: none;
+  }
+
+  .collapsed-sidebar {
+    display: block;
+  }
+
+  .sidebar-header-image {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin-left: 40%;
+    margin-bottom: 5%;
+  }
+}

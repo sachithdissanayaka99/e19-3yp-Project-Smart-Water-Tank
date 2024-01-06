@@ -1,0 +1,178 @@
+.control-container {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 8%;
+    padding: 30px;
+    background-color: #f8f8f8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .control-container:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .page-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .tank-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+  }
+  
+  .tank {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 60%;
+    height: 80%;
+    background-color: #ddd;
+    border: 2px solid #888;
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .tank:hover {
+    background-color: #ccc;
+  }
+  
+  .water {
+    width: 100%;
+    background-color: #2196F3;
+    border-radius: 8px;
+    transition: height 1s ease-in-out;
+    position: absolute;
+    bottom: 0;
+  }
+  
+  .info-section,
+  .switch-section {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .info {
+    font-size: 18px;
+    text-align: center;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    cursor: pointer;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 34px;
+  }
+  
+  .slider:hover {
+    background-color: #999;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 50%;
+  }
+  
+  .slider:hover:before {
+    background-color: #eee;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  .connect-form {
+    text-align: center;
+  }
+  
+  .connect-form form {
+    display: flex;
+    flex-direction: column;
+
+  }
+  
+  .connect-form label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .connect-form input {
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .connect-form button {
+    width: 100%;
+    font-size: 16px;
+    background-color: #2196F3;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .connect-form button:hover {
+    background-color: #0d8bf6;
+  }
+  
+  .connect-form p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .connect-form button:not(:last-child) {
+    margin-right: 10px;
+  }
+  
