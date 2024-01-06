@@ -35,6 +35,7 @@ header {
   
   .tank-icon {
     fill: white; /* Set the fill color of the tank icon to white */
+    margin-right: 8px;
   }
   
   .nav-pills .nav-link {
@@ -50,10 +51,20 @@ header {
 
   .tank-i{
     color: white;
+    display: flex;
+    align-items: center;
   }
 
   .tank-i:hover{
     color: orange; /* Set the fill color of the tank icon to white */
   }
+
+  
+
+  
+  .icon-text-space {
+    margin-left: 8px; /* Adjust the margin as needed */
+  }
+  
   
   

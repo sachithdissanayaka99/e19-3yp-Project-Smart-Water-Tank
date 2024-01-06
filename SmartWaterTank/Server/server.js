@@ -4,7 +4,10 @@ require('dotenv').config()
 const dbConfig = require('./config/dbConfig');
 app.use(express.json());
 const userRoutes = require('./routes/userRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 app.use('/api/user', userRoutes);
+app.use('/admin/api/user', userRoutes);
+app.use('/api/admin', adminRoutes);
 const port = process.env.PORT || 4000;
 
 

@@ -12,6 +12,13 @@ import UserHome from "./pages/user_dash/user_main_dash";
 import { useSelector } from "react-redux";
 import ProtectedRoute from "./components/protectedRoute";
 import PublicRoute from "./components/publicRoute";
+import Usage from "./pages/user_dash/usage";
+import Control from "./pages/user_dash/control";
+import UserProfile from "./pages/user_dash/user_profile";
+import Notification from "./pages/notification/notification";
+import AllUser from "./pages/admin_pages/all_user";
+import AllAdmins from "./pages/admin_pages/all_admins";
+import AdminHome from "./pages/admin_pages/admin_home"
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -25,12 +32,18 @@ function App() {
         </div>
       )}
       <Toaster position="top-center" reverseOrder={false} />
-      <PublicRoute>
-        <Header />
-      </PublicRoute>
+
+      <Header />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <Home />
+            </PublicRoute>
+          }
+        />
         <Route
           path="/login"
           element={
@@ -56,6 +69,14 @@ function App() {
           }
         />
         <Route
+          path="/usage"
+          element={
+            <ProtectedRoute>
+              <Usage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/userHome"
           element={
             <ProtectedRoute>
@@ -65,23 +86,59 @@ function App() {
         />
 
         <Route
-          path="/profile"
+          path="/adminHome"
           element={
             <ProtectedRoute>
-              <UserHome />
+              <AdminHome />
             </ProtectedRoute>
           }
         />
 
         <Route
-          path="/logout"
+          path="/control"
           element={
             <ProtectedRoute>
-              <UserHome />
+              <Control />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/userProfile"
+          element={
+            <ProtectedRoute>
+              <UserProfile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <Notification />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/allUser"
+          element={
+            <ProtectedRoute>
+              <AllUser />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/alladmins"
+          element={
+            <ProtectedRoute>
+              <AllAdmins />
             </ProtectedRoute>
           }
         />
       </Routes>
+
       <Footer />
     </BrowserRouter>
   );

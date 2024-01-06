@@ -61,10 +61,11 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/get-user-info-by-id", authmiddleware, async(req,res) => {
+router.post("/get-user-info-by-id", authmiddleware, async (req, res) => {
   try {
     const user = await userModel.findById(req.body.userId);
-   
+    user.password = undefined;
+
     if (!user) {
       return res.status(200).send({
         message: "User doesn't exists",
@@ -73,10 +74,7 @@ router.post("/get-user-info-by-id", authmiddleware, async(req,res) => {
     } else {
       res.status(200).send({
         success: true,
-        data: {
-          fullName: user.name,
-          email: user.email,
-        },
+        data: user,
       });
     }
   } catch (error) {
@@ -87,5 +85,10 @@ router.post("/get-user-info-by-id", authmiddleware, async(req,res) => {
     });
   }
 });
+
+
+
+
+
 
 module.exports = router;
