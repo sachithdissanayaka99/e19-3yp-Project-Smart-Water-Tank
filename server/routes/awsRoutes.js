@@ -6,16 +6,11 @@ const waterLevelModel = require("../models/water_level_model");
 let latestWaterLevel = null;
 let latestTopic = null;
 
-
 router.get("/tank-exits", async (req, res) => {
-
-  
   try {
     const waterLevelModels = await waterLevelModel.findOne({
-      userId:  req.query.userId,
+      userId: req.query.userId,
     });
-
-
 
     if (waterLevelModels) {
       return res
@@ -39,11 +34,8 @@ router.get("/tank-exits", async (req, res) => {
   }
 });
 
-
-
 router.post("/tank-registration", async (req, res) => {
-
-    console.log("Received request:", req.body.tankId);
+  console.log("Received request:", req.body.tankId);
   try {
     const waterLevelModels = await waterLevelModel.findOne({
       tankId: req.body.tankId,
@@ -75,7 +67,7 @@ router.post("/tank-registration", async (req, res) => {
 
 router.post("/send-input-valve", async (req, res) => {
   try {
-    var dynamicData = "Hello from the frontend!";
+    var dynamicData = "Huttooo";
 
     device.publish("esp32/sub", dynamicData);
     console.log("Message Sent....");
@@ -91,37 +83,62 @@ router.post("/send-input-valve", async (req, res) => {
 router.get("/receive-water-level", async (req, res) => {
   try {
     console.log("Connected to AWS IoT");
-    device.subscribe("esp32/pub");
 
-    device.on("message", function (topic, payload) {
-      console.log(`Received message on topic ${topic}: ${payload.toString()}`);
+    if (req.query.userId) {
+      const waterLevelModels = await waterLevelModel.findOne({
+        userId: req.query.userId,
+      });
+
+      console.log("Water Level:", waterLevelModels.waterLevel);
 
       try {
-        const receivedData = payload.toString();
-        latestWaterLevel = receivedData;
-        latestTopic = topic;
+        console.log(`${waterLevelModels.tankId}/pub`);
 
-        console.log(`Received message on topic ${topic}:`, receivedData);
-        res.status(200).json({
-          message: "Data received from AWS IoT",
-          success: true,
-          data: {
-            topic: latestTopic,
-            waterLevel: latestWaterLevel,
-          },
+        device.subscribe(`${waterLevelModels.tankId}/pub`);
+
+        device.on("message", function (topic, payload) {
+          
+
+          try {
+            const receivedData = payload.toString();
+            latestWaterLevel = receivedData;
+            latestTopic = topic;
+
+            console.log(`Received message on topic ${topic}:`, receivedData);
+            waterLevelModels.waterLevel = receivedData;
+            waterLevelModels.save();
+            // res.status(200).json({
+            //   message: "Data received from AWS IoT",
+            //   success: true,
+            //   data: {
+            //     topic: latestTopic,
+            //     waterLevel: latestWaterLevel,
+            //   },
+            // });
+          } catch (error) {
+            console.error("Error:", error);
+            // res.status(500).json({
+            //   message: "Error receiving data from AWS IoT",
+            //   success: false,
+            //   error: error,
+            //   rawPayload: payload.toString(),
+            // });
+          }
         });
-      } catch (error) {
-        console.error("Error:", error);
-        res.status(500).json({
-          message: "Error receiving data from AWS IoT",
-          success: false,
-          error: error,
-          rawPayload: payload.toString(),
-        });
+
+        console.log("Waiting for messages...");
+      } catch {
+        console.log("Error in receiving data from AWS IoT");
       }
-    });
 
-    console.log("Waiting for messages...");
+      res.status(200).json({
+        message: "Data received from AWS IoT",
+        success: true,
+        data: {
+          waterLevel: waterLevelModels.waterLevel,
+        },
+      });
+    }
   } catch (err) {
     res.status(500).send({
       message: "Error receiving data from AWS IoT",

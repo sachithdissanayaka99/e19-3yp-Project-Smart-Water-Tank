@@ -108,8 +108,47 @@ export default function Monitoring() {
     }
   };
 
+  const getWaterLevel = async () => {
+
+    try{
+
+      const response = await axios.get(
+        "/api/user/hardware/receive-water-level", {
+          params: {
+            userId: user?._id,
+          },
+        }
+      );
+
+      console.log("water level:", response.data.data.waterLevel);
+
+      setWaterLevel(response.data.data.waterLevel);
+
+      console.log("Registration successful:", response.data.success);
+
+    }catch(error){
+
+      console.error("Registration failed:", error);
+      throw error;
+
+    }
+
+
+  }
+
   useEffect(() => {
     isTankRegistere();
+
+    try{
+      if (isTankRegistered) {
+
+        getWaterLevel();
+        
+      }
+    }catch(error){
+      console.error("Registration failed:", error);
+      throw error;
+    }
   });
 
   return (
