@@ -78,9 +78,9 @@ router.post("/send-input-valve", async (req, res) => {
         });
 
         try {
-            var dynamicData = "Huttooo";
+            var dynamicData = "Hiiii";
         
-            device.publish(`${waterLevelModels.tankId}/sub`, dynamicData);
+            device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
             console.log(`${waterLevelModels.tankId}/sub`);
         
             res.status(200).send({ message: "Data sent to AWS IoT", success: true });
@@ -109,9 +109,9 @@ router.post("/send-output-valve", async (req, res) => {
         });
 
         try {
-            var dynamicData = "Huttooo";
+            var dynamicData = "Hiii";
         
-            device.publish(`${waterLevelModels.tankId}/sub`, dynamicData);
+            device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
             console.log(`${waterLevelModels.tankId}/sub`);
         
             res.status(200).send({ message: "Data sent to AWS IoT", success: true });
@@ -141,9 +141,9 @@ router.post("/send-motor-pump", async (req, res) => {
         });
 
         try {
-            var dynamicData = "Sachith Dissanayaka";
+            var dynamicData = "hiiiiiii";
         
-            device.publish(`${waterLevelModels.tankId}/sub`, dynamicData);
+            device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
             console.log(`${waterLevelModels.tankId}/sub`);
         
             res.status(200).send({ message: "Data sent to AWS IoT", success: true });
