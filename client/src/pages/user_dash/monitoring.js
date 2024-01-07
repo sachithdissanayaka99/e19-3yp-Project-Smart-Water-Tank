@@ -22,7 +22,7 @@ import { useEffect } from "react";
 export default function Monitoring() {
   const { Meta } = Card;
   const [isTankRegistered, setIsTankRegistered] = useState(false);
-  const [waterLevel, setWaterLevel] = useState(0);
+  const [waterLevel, setWaterLevel] = useState();
   const [previousMonthUsage, setPreviousMonthUsage] = useState(75);
   const [dailyWaterUsage, setDailyWaterUsage] = useState(
     generatePast30DaysData()
