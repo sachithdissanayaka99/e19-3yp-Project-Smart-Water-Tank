@@ -34,6 +34,7 @@ export default function ControlPanel() {
     try {
       const response = await axios.post("/api/user/hardware/send-input-valve", {
         userId: user?._id,
+        string: `outputValve${!outputValve}`
       });
     } catch (error) {
       console.log(error);
@@ -46,6 +47,7 @@ export default function ControlPanel() {
     try {
       const response = await axios.post("/api/user/hardware/send-output-valve", {
         userId: user?._id,
+        string: `inputValve${!inputValve}`
       });
     } catch (error) {
       console.log(error);
@@ -58,6 +60,7 @@ export default function ControlPanel() {
     try {
       const response = await axios.post("/api/user/hardware/send-motor-pump", {
         userId: user?._id,
+        string: `motorPump${!motorPump}`
       });
     } catch (error) {
       console.log(error);
