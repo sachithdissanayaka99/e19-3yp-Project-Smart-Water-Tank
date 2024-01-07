@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Layout from "../../components/layout";
 import axios from "axios";
+import { useSelector } from "react-redux";
+
 import {
   Button,
   Switch,
@@ -21,23 +23,45 @@ export default function ControlPanel() {
   const [waterLevelSensor, setWaterLevelSensor] = useState(true);
   const [inletValve, setInletValve] = useState(true);
   const [outletValve, setOutletValve] = useState(true);
+  const { user } = useSelector((state) => state.user);
 
   const [monthlyBillGoal, setMonthlyBillGoal] = useState(100); // Set a default goal
 
-  const handleOutputValveChange = async() => {
+  const handleOutputValveChange = async () => {
     setOutputValve(!outputValve);
     checkMonthlyGoal();
-    const response = await axios.post("/api/user/hardware/send-input-valve");
+
+    try {
+      const response = await axios.post("/api/user/hardware/send-input-valve", {
+        userId: user?._id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleInputValveChange = () => {
+  const handleInputValveChange = async() => {
     setInputValve(!inputValve);
     checkMonthlyGoal();
+    try {
+      const response = await axios.post("/api/user/hardware/send-output-valve", {
+        userId: user?._id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleMotorPumpChange = () => {
+  const handleMotorPumpChange = async() => {
     setMotorPump(!motorPump);
     checkMonthlyGoal();
+    try {
+      const response = await axios.post("/api/user/hardware/send-motor-pump", {
+        userId: user?._id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleBillGoalChange = (value) => {
@@ -128,7 +152,7 @@ export default function ControlPanel() {
           </Row>
 
           <div>
-            <br/>
+            <br />
             <h2 className="status-label">Monthly Bill Goal</h2>
             <InputNumber
               min={1}
