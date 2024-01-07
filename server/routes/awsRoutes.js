@@ -65,19 +65,100 @@ router.post("/tank-registration", async (req, res) => {
   }
 });
 
+
+
+//input valve
 router.post("/send-input-valve", async (req, res) => {
-  try {
-    var dynamicData = "Huttooo";
 
-    device.publish("esp32/sub", dynamicData);
-    console.log("Message Sent....");
 
-    res.status(200).send({ message: "Data sent to AWS IoT", success: true });
-  } catch (err) {
-    res
-      .status(500)
-      .send({ message: "Error sending data to AWS IoT", success: false, err });
-  }
+
+    if (req.body.userId) {
+        const waterLevelModels = await waterLevelModel.findOne({
+          userId: req.body.userId,
+        });
+
+        try {
+            var dynamicData = "Huttooo";
+        
+            device.publish(`${waterLevelModels.tankId}/sub`, dynamicData);
+            console.log(`${waterLevelModels.tankId}/sub`);
+        
+            res.status(200).send({ message: "Data sent to AWS IoT", success: true });
+          } catch (err) {
+            res
+              .status(500)
+              .send({ message: "Error sending data to AWS IoT", success: false, err });
+          }
+    
+    
+    
+    
+    
+    }
+  
+});
+
+//output valve
+router.post("/send-output-valve", async (req, res) => {
+
+
+
+    if (req.body.userId) {
+        const waterLevelModels = await waterLevelModel.findOne({
+          userId: req.body.userId,
+        });
+
+        try {
+            var dynamicData = "Huttooo";
+        
+            device.publish(`${waterLevelModels.tankId}/sub`, dynamicData);
+            console.log(`${waterLevelModels.tankId}/sub`);
+        
+            res.status(200).send({ message: "Data sent to AWS IoT", success: true });
+          } catch (err) {
+            res
+              .status(500)
+              .send({ message: "Error sending data to AWS IoT", success: false, err });
+          }
+    
+    
+    
+    
+    
+    }
+  
+});
+
+
+//motor pump
+router.post("/send-motor-pump", async (req, res) => {
+
+
+
+    if (req.body.userId) {
+        const waterLevelModels = await waterLevelModel.findOne({
+          userId: req.body.userId,
+        });
+
+        try {
+            var dynamicData = "Sachith Dissanayaka";
+        
+            device.publish(`${waterLevelModels.tankId}/sub`, dynamicData);
+            console.log(`${waterLevelModels.tankId}/sub`);
+        
+            res.status(200).send({ message: "Data sent to AWS IoT", success: true });
+          } catch (err) {
+            res
+              .status(500)
+              .send({ message: "Error sending data to AWS IoT", success: false, err });
+          }
+    
+    
+    
+    
+    
+    }
+  
 });
 
 router.get("/receive-water-level", async (req, res) => {
