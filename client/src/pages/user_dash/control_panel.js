@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../../components/layout";
+import axios from "axios";
 import {
   Button,
   Switch,
@@ -23,9 +24,10 @@ export default function ControlPanel() {
 
   const [monthlyBillGoal, setMonthlyBillGoal] = useState(100); // Set a default goal
 
-  const handleOutputValveChange = () => {
+  const handleOutputValveChange = async() => {
     setOutputValve(!outputValve);
     checkMonthlyGoal();
+    const response = await axios.post("/api/user/hardware/send-input-valve");
   };
 
   const handleInputValveChange = () => {
