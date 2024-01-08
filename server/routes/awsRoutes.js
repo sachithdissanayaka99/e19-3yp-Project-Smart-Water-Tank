@@ -109,7 +109,7 @@ router.post("/send-output-valve", async (req, res) => {
         });
 
         try {
-            var dynamicData = "Hiii";
+            // var dynamicData = "Hiii";
         
             device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
             console.log(`${waterLevelModels.tankId}/sub`);
@@ -186,8 +186,11 @@ router.get("/receive-water-level", async (req, res) => {
             latestTopic = topic;
 
             console.log(`Received message on topic ${topic}:`, receivedData);
-            waterLevelModels.waterLevel = receivedData;
-            waterLevelModels.save();
+            if (receivedData != null && receivedData != waterLevelModels.waterLevel) {
+              waterLevelModels.waterLevel = receivedData;
+              waterLevelModels.save();
+                
+            }
             // res.status(200).json({
             //   message: "Data received from AWS IoT",
             //   success: true,
