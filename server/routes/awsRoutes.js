@@ -180,15 +180,20 @@ router.get("/receive-water-level", async (req, res) => {
         device.on("message", function (topic, payload) {
           
 
+          let isSaving = false;
+
           try {
             const receivedData = payload.toString();
             latestWaterLevel = receivedData;
             latestTopic = topic;
 
             console.log(`Received message on topic ${topic}:`, receivedData);
-            if (receivedData != null && receivedData != waterLevelModels.waterLevel) {
+            if (receivedData != null && receivedData != waterLevelModels.waterLevel && !isSaving) {
+
+              isSaving = true;
               waterLevelModels.waterLevel = receivedData;
               waterLevelModels.save();
+              isSaving = false;
                 
             }
             // res.status(200).json({
