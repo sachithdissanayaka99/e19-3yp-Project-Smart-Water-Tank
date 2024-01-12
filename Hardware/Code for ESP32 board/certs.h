@@ -1,11 +1,11 @@
 #include <pgmspace.h>
 
-#define THINGNAME "iTank_01" // replace with thing name
+#define THINGNAME "" // replace with thing name
 
-const char WIFI_SSID[] = "mahelaekanayake10"; // replace with wifi ssid              
-const char WIFI_PASSWORD[] = "12354678"; // replace with wifi password
+const char WIFI_SSID[] = ""; // replace with wifi ssid              
+const char WIFI_PASSWORD[] = ""; // replace with wifi password
 
-const char AWS_IOT_ENDPOINT[] = "arxgw2h3ywh22-ats.iot.us-east-1.amazonaws.com"; // replace with iot endpoint
+const char AWS_IOT_ENDPOINT[] = ""; // replace with iot endpoint
 
 // Amazon Root CA 1 : 
 static const char AWS_CERT_CA[] PROGMEM = R"EOF(
