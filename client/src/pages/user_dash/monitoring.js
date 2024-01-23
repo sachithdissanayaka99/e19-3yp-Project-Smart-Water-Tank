@@ -18,6 +18,8 @@ import "./styles/monitoring.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+// const url = "http://localhost:4000";
+const url = "http://ec2-54-234-133-143.compute-1.amazonaws.com:4000"
 
 export default function Monitoring() {
   const { Meta } = Card;
@@ -60,7 +62,7 @@ export default function Monitoring() {
 
 
     try {
-      const response = await axios.get("/api/user/hardware/tank-exits", {
+      const response = await axios.get(`${url}/api/user/hardware/tank-exits`, {
         params: {
           userId: user?._id,
         },
@@ -86,7 +88,7 @@ export default function Monitoring() {
   const handleRegistration = async () => {
     try {
       const response = await axios.post(
-        "/api/user/hardware/tank-registration",
+        `${url}/api/user/hardware/tank-registration`,
         {
           tankId,
           waterLevel,
@@ -113,7 +115,7 @@ export default function Monitoring() {
     try{
 
       const response = await axios.get(
-        "/api/user/hardware/receive-water-level", {
+        `${url}/api/user/hardware/receive-water-level`, {
           params: {
             userId: user?._id,
           },
