@@ -15,8 +15,8 @@ import {
 } from "antd";
 import { CheckCircleTwoTone, CloseCircleTwoTone } from "@ant-design/icons";
 import "./styles/control_panel.css";
-// const url = "http://localhost:4000";
-const url = "http://ec2-54-234-133-143.compute-1.amazonaws.com:4000";
+const url = "http://localhost:4000";
+// const url = "http://ec2-54-234-133-143.compute-1.amazonaws.com:4000";
 
 export default function ControlPanel() {
   const [outputValve, setOutputValve] = useState(false);

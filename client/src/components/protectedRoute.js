@@ -5,6 +5,7 @@ import { setUser } from "../redux/userSlice";
 import axios from "axios";
 import { hideLoading, showLoading } from "../redux/alertsSlice";
 const url = "http://localhost:4000"
+// const url = "http://ec2-54-234-133-143.compute-1.amazonaws.com:4000";
 
 function ProtectedRoute(props) {
   const { user } = useSelector((state) => state.user);

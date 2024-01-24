@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux';
 import { showLoading, hideLoading } from '../../redux/alertsSlice';
 import { useState } from 'react';
 import { Table } from 'antd';
-// const url = "http://localhost:4000";
-const url = "http://ec2-54-234-133-143.compute-1.amazonaws.com:4000";
+const url = "http://localhost:4000";
+// const url = "http://ec2-54-234-133-143.compute-1.amazonaws.com:4000";
 
 export default function AllAdmins() {
   const [admins, setAdmins] = useState([]);
