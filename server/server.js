@@ -1,5 +1,5 @@
 const express = require('express');
-const cors = require('cors'); // Import the cors middleware
+const cors = require('cors');
 const app = express();
 const path = require('path');
 require('dotenv').config();
@@ -8,27 +8,30 @@ const awsConfig = require('./config/awsConfig');
 
 app.use(express.json());
 
-// Use the cors middleware to enable CORS for all routes
-app.use(cors());
+// Use the cors middleware with specific options to enable CORS for a particular origin
+const corsOptions = {
+    origin: 'http://54.208.4.191',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // enable set cookie
+};
 
-const _dirname = path.dirname("")
-const buildPath = path.join(_dirname  , "../client/build");
+app.use(cors(corsOptions));
 
-app.use(express.static(buildPath))
+const _dirname = path.dirname("");
+const buildPath = path.join(_dirname, "../client/build");
 
-app.get("/*", function(req, res){
+app.use(express.static(buildPath));
 
+app.get("/*", function (req, res) {
     res.sendFile(
         path.join(__dirname, "../client/build/index.html"),
         function (err) {
-          if (err) {
-            res.status(500).send(err);
-          }
+            if (err) {
+                res.status(500).send(err);
+            }
         }
-      );
-
-})
-
+    );
+});
 
 const userRoutes = require('./routes/userRoutes');
 const adminRoutes = require('./routes/adminRoutes');
