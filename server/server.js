@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors'); // Import the cors middleware
 const app = express();
+const path = require('path');
 require('dotenv').config();
 const dbConfig = require('./config/dbConfig');
 const awsConfig = require('./config/awsConfig');
@@ -9,6 +10,25 @@ app.use(express.json());
 
 // Use the cors middleware to enable CORS for all routes
 app.use(cors());
+
+const _dirname = path.dirname("")
+const buildPath = path.join(_dirname  , "../client/build");
+
+app.use(express.static(buildPath))
+
+app.get("/*", function(req, res){
+
+    res.sendFile(
+        path.join(__dirname, "../client/build/index.html"),
+        function (err) {
+          if (err) {
+            res.status(500).send(err);
+          }
+        }
+      );
+
+})
+
 
 const userRoutes = require('./routes/userRoutes');
 const adminRoutes = require('./routes/adminRoutes');

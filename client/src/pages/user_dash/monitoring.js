@@ -18,8 +18,8 @@ import "./styles/monitoring.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-// const url = "http://localhost:4000";
-const url = "http://ec2-54-234-133-143.compute-1.amazonaws.com:4000"
+const url = "http://localhost:4000";
+// const url = "http://ec2-54-234-133-143.compute-1.amazonaws.com:4000"
 
 export default function Monitoring() {
   const { Meta } = Card;
