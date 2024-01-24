@@ -8,14 +8,12 @@ const awsConfig = require('./config/awsConfig');
 
 app.use(express.json());
 
-// Use the cors middleware with specific options to enable CORS for a particular origin
-const corsOptions = {
-    origin: 'http://54.208.4.191',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // enable set cookie
-};
 
-app.use(cors(corsOptions));
+console.log('Before CORS middleware');
+// Enable CORS for the specific origin
+app.use(cors({ origin: 'http://54.208.4.191' }));
+
+console.log('after CORS middleware');
 
 const _dirname = path.dirname("");
 const buildPath = path.join(_dirname, "../client/build");
