@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../../redux/alertsSlice";
 import { useState } from "react";
 import { Table } from "antd";
+const url = "http://localhost:4000";
+// const url = "http://ec2-54-234-133-143.compute-1.amazonaws.com:4000";
 
 export default function AllUser() {
   const [users, setUsers] = useState([]);
@@ -14,7 +16,7 @@ export default function AllUser() {
     const getUserData = async () => {
       try {
         dispatch(showLoading());
-        const response = await axios.get("/api/admin/get-all-users", {
+        const response = await axios.get(`${url}/api/admin/get-all-users`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

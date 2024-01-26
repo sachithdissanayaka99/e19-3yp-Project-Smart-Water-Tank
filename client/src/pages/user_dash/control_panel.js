@@ -3,6 +3,7 @@ import Layout from "../../components/layout";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
+
 import {
   Button,
   Switch,
@@ -14,6 +15,8 @@ import {
 } from "antd";
 import { CheckCircleTwoTone, CloseCircleTwoTone } from "@ant-design/icons";
 import "./styles/control_panel.css";
+const url = "http://localhost:4000";
+// const url = "http://ec2-54-234-133-143.compute-1.amazonaws.com:4000";
 
 export default function ControlPanel() {
   const [outputValve, setOutputValve] = useState(false);
@@ -32,7 +35,7 @@ export default function ControlPanel() {
     checkMonthlyGoal();
 
     try {
-      const response = await axios.post("/api/user/hardware/send-input-valve", {
+      const response = await axios.post(`${url}/api/user/hardware/send-input-valve`, {
         userId: user?._id,
         string: `outputValve${!outputValve}`
       });
@@ -45,7 +48,7 @@ export default function ControlPanel() {
     setInputValve(!inputValve);
     checkMonthlyGoal();
     try {
-      const response = await axios.post("/api/user/hardware/send-output-valve", {
+      const response = await axios.post(`${url}/api/user/hardware/send-output-valve`, {
         userId: user?._id,
         string: `inputValve${!inputValve}`
       });
@@ -58,7 +61,7 @@ export default function ControlPanel() {
     setMotorPump(!motorPump);
     checkMonthlyGoal();
     try {
-      const response = await axios.post("/api/user/hardware/send-motor-pump", {
+      const response = await axios.post(`${url}/api/user/hardware/send-motor-pump`, {
         userId: user?._id,
         string: `motorPump${!motorPump}`
       });
