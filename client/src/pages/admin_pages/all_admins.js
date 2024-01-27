@@ -1,4 +1,5 @@
-import React, { useEffect} from 'react';
+// frontend/pages/AllAdmins.js
+import React, { useEffect } from 'react';
 import Layout from '../../components/layout';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -6,7 +7,6 @@ import { showLoading, hideLoading } from '../../redux/alertsSlice';
 import { useState } from 'react';
 import { Table } from 'antd';
 const url = "http://localhost:4000";
-// const url = "http://ec2-54-234-133-143.compute-1.amazonaws.com:4000";
 
 export default function AllAdmins() {
   const [admins, setAdmins] = useState([]);
@@ -37,10 +37,10 @@ export default function AllAdmins() {
   ];
 
   useEffect(() => {
-    const getCounsellorData = async () => {
+    const getAdminData = async () => {
       try {
         dispatch(showLoading());
-        const response = await axios.get(`${url}/api/admin/get-all-admin`, {
+        const response = await axios.post(`${url}/api/admin/get-all-admin`, {}, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -55,7 +55,7 @@ export default function AllAdmins() {
       }
     };
 
-    getCounsellorData();
+    getAdminData();
   }, [dispatch]); // Include only necessary dependencies in the array
 
   return (

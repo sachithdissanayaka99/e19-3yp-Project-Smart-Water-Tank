@@ -1,3 +1,4 @@
+// backend/routes/aws_routes.js
 const express = require("express");
 const router = express.Router();
 const { device } = require("../config/awsConfig");
@@ -6,10 +7,10 @@ const waterLevelModel = require("../models/water_level_model");
 let latestWaterLevel = null;
 let latestTopic = null;
 
-router.get("/tank-exits", async (req, res) => {
+router.post("/tank-exits", async (req, res) => {
   try {
     const waterLevelModels = await waterLevelModel.findOne({
-      userId: req.query.userId,
+      userId: req.body.userId,
     });
 
     if (waterLevelModels) {
@@ -65,109 +66,79 @@ router.post("/tank-registration", async (req, res) => {
   }
 });
 
-
-
-//input valve
+// input valve
 router.post("/send-input-valve", async (req, res) => {
+  if (req.body.userId) {
+    const waterLevelModels = await waterLevelModel.findOne({
+      userId: req.body.userId,
+    });
 
+    try {
+      var dynamicData = "Hiiii";
 
+      device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
+      console.log(`${waterLevelModels.tankId}/sub`);
 
-    if (req.body.userId) {
-        const waterLevelModels = await waterLevelModel.findOne({
-          userId: req.body.userId,
-        });
-
-        try {
-            var dynamicData = "Hiiii";
-        
-            device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
-            console.log(`${waterLevelModels.tankId}/sub`);
-        
-            res.status(200).send({ message: "Data sent to AWS IoT", success: true });
-          } catch (err) {
-            res
-              .status(500)
-              .send({ message: "Error sending data to AWS IoT", success: false, err });
-          }
-    
-    
-    
-    
-    
+      res.status(200).send({ message: "Data sent to AWS IoT", success: true });
+    } catch (err) {
+      res
+        .status(500)
+        .send({ message: "Error sending data to AWS IoT", success: false, err });
     }
-  
+  }
 });
 
-//output valve
+// output valve
 router.post("/send-output-valve", async (req, res) => {
+  if (req.body.userId) {
+    const waterLevelModels = await waterLevelModel.findOne({
+      userId: req.body.userId,
+    });
 
+    try {
+      // var dynamicData = "Hiii";
 
+      device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
+      console.log(`${waterLevelModels.tankId}/sub`);
 
-    if (req.body.userId) {
-        const waterLevelModels = await waterLevelModel.findOne({
-          userId: req.body.userId,
-        });
-
-        try {
-            // var dynamicData = "Hiii";
-        
-            device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
-            console.log(`${waterLevelModels.tankId}/sub`);
-        
-            res.status(200).send({ message: "Data sent to AWS IoT", success: true });
-          } catch (err) {
-            res
-              .status(500)
-              .send({ message: "Error sending data to AWS IoT", success: false, err });
-          }
-    
-    
-    
-    
-    
+      res.status(200).send({ message: "Data sent to AWS IoT", success: true });
+    } catch (err) {
+      res
+        .status(500)
+        .send({ message: "Error sending data to AWS IoT", success: false, err });
     }
-  
+  }
 });
 
-
-//motor pump
+// motor pump
 router.post("/send-motor-pump", async (req, res) => {
+  if (req.body.userId) {
+    const waterLevelModels = await waterLevelModel.findOne({
+      userId: req.body.userId,
+    });
 
+    try {
+      var dynamicData = "hiiiiiii";
 
+      device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
+      console.log(`${waterLevelModels.tankId}/sub`);
 
-    if (req.body.userId) {
-        const waterLevelModels = await waterLevelModel.findOne({
-          userId: req.body.userId,
-        });
-
-        try {
-            var dynamicData = "hiiiiiii";
-        
-            device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
-            console.log(`${waterLevelModels.tankId}/sub`);
-        
-            res.status(200).send({ message: "Data sent to AWS IoT", success: true });
-          } catch (err) {
-            res
-              .status(500)
-              .send({ message: "Error sending data to AWS IoT", success: false, err });
-          }
-    
-    
-    
-    
-    
+      res.status(200).send({ message: "Data sent to AWS IoT", success: true });
+    } catch (err) {
+      res
+        .status(500)
+        .send({ message: "Error sending data to AWS IoT", success: false, err });
     }
-  
+  }
 });
 
-router.get("/receive-water-level", async (req, res) => {
+router.post("/receive-water-level", async (req, res) => {
   try {
     console.log("Connected to AWS IoT");
 
-    if (req.query.userId) {
+    if (req.body.userId) {
       const waterLevelModels = await waterLevelModel.findOne({
-        userId: req.query.userId,
+        userId: req.body.userId,
       });
 
       console.log("Water Level:", waterLevelModels.waterLevel);
@@ -178,8 +149,6 @@ router.get("/receive-water-level", async (req, res) => {
         device.subscribe(`${waterLevelModels.tankId}/pub`);
 
         device.on("message", function (topic, payload) {
-          
-
           let isSaving = false;
 
           try {
@@ -188,30 +157,18 @@ router.get("/receive-water-level", async (req, res) => {
             latestTopic = topic;
 
             console.log(`Received message on topic ${topic}:`, receivedData);
-            if (receivedData != null && receivedData != waterLevelModels.waterLevel && !isSaving) {
-
+            if (
+              receivedData != null &&
+              receivedData != waterLevelModels.waterLevel &&
+              !isSaving
+            ) {
               isSaving = true;
               waterLevelModels.waterLevel = receivedData;
               waterLevelModels.save();
               isSaving = false;
-                
             }
-            // res.status(200).json({
-            //   message: "Data received from AWS IoT",
-            //   success: true,
-            //   data: {
-            //     topic: latestTopic,
-            //     waterLevel: latestWaterLevel,
-            //   },
-            // });
           } catch (error) {
             console.error("Error:", error);
-            // res.status(500).json({
-            //   message: "Error receiving data from AWS IoT",
-            //   success: false,
-            //   error: error,
-            //   rawPayload: payload.toString(),
-            // });
           }
         });
 

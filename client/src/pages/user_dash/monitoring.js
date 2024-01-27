@@ -1,6 +1,7 @@
 // Monitoring.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import "./styles/monitoring.css";
 import {
   Avatar,
   Card,
@@ -14,21 +15,15 @@ import {
 } from "antd";
 import LiquidGauge from "react-liquid-gauge";
 import Layout from "../../components/layout";
-import "./styles/monitoring.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-const url = "http://localhost:4000";
-// const url = "http://ec2-54-234-133-143.compute-1.amazonaws.com:4000"
 
 export default function Monitoring() {
   const { Meta } = Card;
   const [isTankRegistered, setIsTankRegistered] = useState(false);
-  const [waterLevel, setWaterLevel] = useState();
+  const [waterLevel, setWaterLevel] = useState(0);
   const [previousMonthUsage, setPreviousMonthUsage] = useState(75);
-  const [dailyWaterUsage, setDailyWaterUsage] = useState(
-    generatePast30DaysData()
-  );
+  const [dailyWaterUsage, setDailyWaterUsage] = useState(generatePast30DaysData());
   const [tankId, setTankId] = useState("");
   const { user } = useSelector((state) => state.user);
 
@@ -58,14 +53,10 @@ export default function Monitoring() {
     },
   ];
 
-  const isTankRegistere = async () => {
-
-
+  const isTankRegisteredAPI = async () => {
     try {
-      const response = await axios.get(`${url}/api/user/hardware/tank-exits`, {
-        params: {
-          userId: user?._id,
-        },
+      const response = await axios.post(`/api/user/hardware/tank-exits`, {
+        userId: user?._id,
       });
 
       console.log("Registration successful:", response.data.success);
@@ -88,7 +79,7 @@ export default function Monitoring() {
   const handleRegistration = async () => {
     try {
       const response = await axios.post(
-        `${url}/api/user/hardware/tank-registration`,
+        `/api/user/hardware/tank-registration`,
         {
           tankId,
           waterLevel,
@@ -111,47 +102,35 @@ export default function Monitoring() {
   };
 
   const getWaterLevel = async () => {
-
-    try{
-
-      const response = await axios.get(
-        `${url}/api/user/hardware/receive-water-level`, {
-          params: {
-            userId: user?._id,
-          },
+    try {
+      const response = await axios.post(
+        `/api/user/hardware/receive-water-level`,
+        {
+          userId: user?._id,
         }
       );
 
-      console.log("water level:", response.data.data.waterLevel);
-
+      console.log("Water level:", response.data.data.waterLevel);
       setWaterLevel(response.data.data.waterLevel);
-
       console.log("Registration successful:", response.data.success);
-
-    }catch(error){
-
+    } catch (error) {
       console.error("Registration failed:", error);
       throw error;
-
     }
-
-
-  }
+  };
 
   useEffect(() => {
-    isTankRegistere();
+    isTankRegisteredAPI();
 
-    try{
+    try {
       if (isTankRegistered) {
-
         getWaterLevel();
-        
       }
-    }catch(error){
+    } catch (error) {
       console.error("Registration failed:", error);
       throw error;
     }
-  });
+  }, [isTankRegistered]);
 
   return (
     <Layout>
@@ -178,20 +157,7 @@ export default function Monitoring() {
               />
             </Card>
 
-            <Card className="card-monitoring">
-              <Meta
-                avatar={
-                  <Avatar src="https://clipart-library.com/images/Lcd5ndBri.jpg" />
-                }
-                title="Previous Month Usage"
-                description="This gives the usage details for the previous month. Click below to see day-by-day usage."
-              />
-
-              <div style={{ marginTop: "16px" }}>
-                <h3>Total Monthly Usage</h3>
-                <Progress percent={previousMonthUsage} status="active" />
-              </div>
-            </Card>
+            
 
             <Row gutter={16}>
               <Col span={24}>
@@ -236,3 +202,22 @@ export default function Monitoring() {
     </Layout>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
