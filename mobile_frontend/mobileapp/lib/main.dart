@@ -9,6 +9,8 @@ import 'Auth/login.dart';
 import 'Auth/signup.dart';
 import 'package:provider/provider.dart';
 import 'package:mobileapp/handle/userPro.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mobileapp/pages/profile.dart';
 
 void main() {
   runApp(
@@ -38,6 +40,7 @@ class MyApp extends StatelessWidget {
     '/usage':(context) => Usage(),
     '/login':(context) =>  LoginPage(),
     '/signin':(context) => RegisterPage(),
+    '/profile':(context) => Profile(),
   }
 );
 
