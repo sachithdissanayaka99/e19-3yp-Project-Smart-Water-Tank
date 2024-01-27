@@ -3,52 +3,22 @@ import 'package:flutter/material.dart' ;
 import 'package:provider/provider.dart';
 import 'dart:io';
 import 'dart:convert';
-
-
-Future<void> getUserInfoById(String token) async {
-  print('user in: $token');
-  const url = 'http://54.208.4.191/api/user/get-user-info-by-id';
-  final response = await http.post(
-    Uri.parse(url),
-    headers: {
-     'Authorization': 'Bearer $token',
-    },
-    body: {
-      'token': token,
-    },
-  );
-
-  if (response.statusCode == 200) {
-    final responseData = json.decode(response.body);
-    final success = responseData['success'];
-    final data = responseData['data'];
-
-    if (success) {
-      // User exists, handle the data
-      print('User Info: $data');
-    } else {
-      // User doesn't exist
-      final message = responseData['message'];
-      print('User Info Error: $message');
-    }
-
-  }
-  else{
-    print('User Info Error: ${response.statusCode}');
-  }}
-
+import 'package:shared_preferences/shared_preferences.dart';  
 
    Future<void> getWaterLevel(String userId) async {
-  final url = 'http://54.208.4.191/api/user/hardware/receive-water-level?userId=$userId';
-  final response = await http.get(Uri.parse(url),
+  final url = 'http://54.208.4.191/api/user/hardware/receive-water-level';
+  final response = await http.post(Uri.parse(url),
       headers: {
-        HttpHeaders.contentTypeHeader: 'application/json',
+       'Content-Type': 'application/json',
       },
       
     );
  if (response.statusCode == 200) {
-    final responseData = json.decode(response.body);
-    final success = responseData['success'];
+       final contentType = response.headers['content-type'];
+      if (contentType != null && contentType.contains('application/json')) {
+        final responseData = json.decode(response.body);
+        final success = responseData['success'];
+
 
     if (success) {
       final waterlevel = responseData['data']['waterLevel'];
@@ -61,6 +31,7 @@ Future<void> getUserInfoById(String token) async {
     print('Request failed: ${response.body}');
     
   }
+}
 }
 
 class userpro extends ChangeNotifier{
@@ -98,17 +69,16 @@ class userpro extends ChangeNotifier{
     notifyListeners();
   }
 
-  void Setupdata(String userId){
-    //print('user: $userId');
-    getUserInfoById(userId);
-    notifyListeners();
-  }
-
   void getwaterLevel(){
     userId = id;
     getWaterLevel(userId);
   
     notifyListeners();
+  }
+  void setwaterlevel(String water){
+    waterlevel=water;
+    notifyListeners();
+
   }
 
 }

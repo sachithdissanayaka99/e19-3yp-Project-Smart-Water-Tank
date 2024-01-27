@@ -45,6 +45,7 @@ class _LoginPageState extends State<LoginPage> {
         // Make sure to import the shared_preferences package
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('token', token);
+        getUserInfoById(token);
 
         showDialog(
           context: context,
@@ -57,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text('OK'),
                   onPressed: () {
                     Navigator.of(context).pop();
-                    getUserInfoById(token);
+                    
                     Navigator.pushNamed(context, '/home');
                   },
                 ),
@@ -142,12 +143,13 @@ class _LoginPageState extends State<LoginPage> {
     final data = responseData['data'];
     final userID= responseData['data']['_id'];
     final name=responseData['data']['fullName'];
+    
 
     if (success) {
       // User exists, handle the data
       print('User Info: $data');
-      Provider.of<userpro>(context, listen: false).setuser(userID);
-      Provider.of<userpro>(context, listen: false).setname(name); 
+      print('User ID: $name');
+      Provider.of<userpro>(context, listen: false).setuser(userID); 
     } else {
       // User doesn't exist
       final message = responseData['message'];
@@ -162,37 +164,118 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-      ),
+      backgroundColor: const Color.fromARGB(255, 227, 238, 248),
+      
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
+            Container(
+              margin: EdgeInsets.all(10.0),
+              width:250,
+              height:250,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/logo.png"),
+                  fit: BoxFit.contain,
+                ),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              
+              ),
+            //Text('Login', style: TextStyle(fontSize: 32.0),),
+            Container(
+              margin: EdgeInsets.symmetric (horizontal: 20.0, vertical: 2.0),
+              padding: EdgeInsets.symmetric ( horizontal: 20.0, vertical: 0.0),
+              decoration: BoxDecoration(
+     borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(0.0),
+      topRight: Radius.circular(30.0),
+      bottomLeft: Radius.circular(30.0),
+      bottomRight: Radius.circular(30.0),
+    ),
+    border: Border.all(
+      color: Color.fromARGB(195, 22, 7, 36),
+      width: 1.0,
+    ),
+  ),
+            child:TextField(
               controller: _emailController,
               decoration: InputDecoration(
                 labelText: 'Email',
               ),
-            ),
-            TextField(
+              
+            ),),
+             Container(
+              margin: EdgeInsets.symmetric (horizontal: 20.0, vertical: 2.0),
+              padding: EdgeInsets.symmetric ( horizontal: 20.0, vertical: 0.0),
+              decoration: BoxDecoration(
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(0.0),
+      topRight: Radius.circular(30.0),
+      bottomLeft: Radius.circular(30.0),
+      bottomRight: Radius.circular(30.0),
+    ),
+    border: Border.all(
+      color: Color.fromARGB(195, 22, 7, 36),
+      width: 1.0,
+    ),
+  ),
+            child:TextField(
               controller: _passwordController,
               decoration: InputDecoration(
                 labelText: 'Password',
               ),
               obscureText: true,
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
+            ),),
+           Container(
+              width:150,
+              height:40,
+              margin: EdgeInsets.symmetric ( horizontal:20.0,vertical: 0.0  ),
+              padding: EdgeInsets.symmetric ( horizontal: 20.0, vertical: 0.0),
+              decoration: BoxDecoration(
+                
+    
+    ),
+           
+            child:ElevatedButton(
               onPressed: loginUser,
               child: Text('Login'),
-            ),
-            ElevatedButton(
+              style: ButtonStyle(
+    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      RoundedRectangleBorder(
+       borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(0.0),
+      topRight: Radius.circular(30.0),
+      bottomLeft: Radius.circular(30.0),
+      bottomRight: Radius.circular(30.0),
+    ),// Set the corner curve here
+      ),
+    )))),
+            Container(
+              width:150,
+              height:40,
+              margin: EdgeInsets.all ( 10.0),
+              padding: EdgeInsets.symmetric ( horizontal: 20.0, vertical: 0.0),
+              decoration: BoxDecoration(),
+            child:ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/signin');
               },
               child: Text('Sign Up'),
-            )
+               style: ButtonStyle(
+    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      RoundedRectangleBorder(
+       borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(0.0),
+      topRight: Radius.circular(30.0),
+      bottomLeft: Radius.circular(30.0),
+      bottomRight: Radius.circular(30.0),
+    ),// Set the corner curve here
+      ),
+    ))
+            ),),
           ],
         ),
       ),

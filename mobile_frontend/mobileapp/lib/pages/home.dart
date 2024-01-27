@@ -22,7 +22,8 @@ class _HomeState extends State<Home>{
         actions:[ 
           // ignore: prefer_const_constructors
           IconButton(onPressed:(){
-            
+
+            Navigator.pushNamed(context, '/profile');
           }, icon: Icon(Icons.arrow_drop_down_sharp)
           ,
           color: Colors.black,), ],
