@@ -31,6 +31,9 @@ dependencies:
   flutter:
     sdk: flutter
   syncfusion_flutter_charts: ^24.1.44+1 #dependency for charts
+  provider: ^5.0.0 #dependency for state management
+  liquid_progress_indicator_v2: ^0.5.0
+  http: ^0.13.3 #dependency for http requests
 
 
 
