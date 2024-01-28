@@ -38,6 +38,11 @@ function Layout({ children }) {
 
   const adminMenu = [
     {
+      name: "Home",
+      icon: "ri-home-2-fill",
+      path: "/userHome",
+    },
+    {
       name: "All Users",
       icon: "ri-user-line",
       path: "/admin/allUser",
