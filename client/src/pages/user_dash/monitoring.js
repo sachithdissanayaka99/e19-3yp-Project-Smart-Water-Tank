@@ -23,9 +23,12 @@ export default function Monitoring() {
   const [isTankRegistered, setIsTankRegistered] = useState(false);
   const [waterLevel, setWaterLevel] = useState(0);
   const [previousMonthUsage, setPreviousMonthUsage] = useState(75);
-  const [dailyWaterUsage, setDailyWaterUsage] = useState(generatePast30DaysData());
+  const [dailyWaterUsage, setDailyWaterUsage] = useState(
+    generatePast30DaysData()
+  );
   const [tankId, setTankId] = useState("");
   const { user } = useSelector((state) => state.user);
+  const [waterLevelBoundary, setWaterLevelBoundary] = useState(100);
 
   function generatePast30DaysData() {
     const today = new Date();
@@ -119,6 +122,13 @@ export default function Monitoring() {
     }
   };
 
+  const handleWaterLevelBoundarySubmit = () => {
+
+    console.log("Water level boundary submitted:", waterLevelBoundary);
+    toast.success("Water level boundary set successfully!");
+  };
+  
+
   useEffect(() => {
     isTankRegisteredAPI();
 
@@ -146,7 +156,7 @@ export default function Monitoring() {
                 height={200}
                 value={waterLevel}
                 fontSize={24}
-                textColor="#000"
+                textColor={waterLevel > waterLevelBoundary ? "red" : "#000"}
               />
               <Meta
                 avatar={
@@ -155,22 +165,24 @@ export default function Monitoring() {
                 title="Water Level"
                 description="This gives approximate water level in the tank."
               />
-            </Card>
-
-            
-
-            <Row gutter={16}>
-              <Col span={24}>
-                <Card className="card-monitoring" style={{ width: "1000px" }}>
-                  <Table
-                    dataSource={dailyWaterUsage}
-                    columns={columns}
-                    pagination={false}
-                    scroll={{ y: 200 }}
+              {isTankRegistered && (
+                <div className="water-level-boundary">
+                  <label>Set Water Level Boundary:</label>
+                  <Input
+                    type="number"
+                    value={waterLevelBoundary}
+                    onChange={(e) => setWaterLevelBoundary(e.target.value)}
                   />
-                </Card>
-              </Col>
-            </Row>
+                  <Button
+                    type="primary"
+                    onClick={handleWaterLevelBoundarySubmit}
+                    className="submit-button"
+                  >
+                    Set Boundary
+                  </Button>
+                </div>
+              )}
+            </Card>
           </>
         ) : (
           <Form className="card-monitoring">
@@ -202,22 +214,3 @@ export default function Monitoring() {
     </Layout>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

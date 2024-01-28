@@ -16,18 +16,15 @@ class _tank extends State<Tank>{
 
   int inlet_v=0;
   int outlet_v=0;
-  double waterLevel=0.0;
-  String waterlevel='';
+  double waterLevel=0.25;
+ 
 
   @override
   Widget build(BuildContext context){
     final screenSize = MediaQuery.of(context).size; // Define screenSize variable
     String uid= Provider.of<userpro>(context).id;
     String user= Provider.of<userpro>(context).name;
-    waterlevel=Provider.of<userpro>(context).waterlevel;
-
-    waterLevel= double.parse(waterlevel);
-
+    waterLevel= double.parse(Provider.of<userpro>(context).level);
     return Scaffold(
       appBar:AppBar(
         title: SizedBox(
@@ -50,7 +47,7 @@ class _tank extends State<Tank>{
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-           Text('CURRENT WATER LEVEL '+'$waterLevel',style: TextStyle(
+           Text('CURRENT WATER LEVEL',style: TextStyle(
             fontSize: 20,
             fontFamily: 'Rubik',
           ),),
@@ -70,7 +67,7 @@ class _tank extends State<Tank>{
           height: screenSize.height * 0.4,
           width: screenSize.width*0.5, // Set maximum height for the image
          child:  LiquidCircularProgressIndicator(
-          value: waterLevel*0.01, // Set the progress value between 0.0 and 1.0
+          value: waterLevel, // Set the progress value between 0.0 and 1.0
           valueColor: AlwaysStoppedAnimation(Color.fromARGB(207, 27, 123, 201)),
           backgroundColor: Colors.white,
           direction: Axis.vertical,
