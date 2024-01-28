@@ -123,11 +123,9 @@ export default function Monitoring() {
   };
 
   const handleWaterLevelBoundarySubmit = () => {
-
     console.log("Water level boundary submitted:", waterLevelBoundary);
     toast.success("Water level boundary set successfully!");
   };
-  
 
   useEffect(() => {
     isTankRegisteredAPI();
@@ -135,6 +133,11 @@ export default function Monitoring() {
     try {
       if (isTankRegistered) {
         getWaterLevel();
+  
+        const intervalId = setInterval(getWaterLevel, 100);
+
+        // Cleanup the interval on component unmount
+        return () => clearInterval(intervalId);
       }
     } catch (error) {
       console.error("Registration failed:", error);
