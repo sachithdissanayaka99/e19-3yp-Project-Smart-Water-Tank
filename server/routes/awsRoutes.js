@@ -8,6 +8,7 @@ let latestWaterLevel = null;
 let latestTopic = null;
 
 router.post("/tank-exits", async (req, res) => {
+  console.log("Received request:", req.body.userId);
   try {
     const waterLevelModels = await waterLevelModel.findOne({
       userId: req.body.userId,
