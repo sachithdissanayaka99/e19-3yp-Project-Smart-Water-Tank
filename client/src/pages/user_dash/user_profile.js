@@ -1,31 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Layout from '../../components/layout';
 import { Card, Form, Input, Button } from 'antd';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
 import "./styles/profile.css";
 
 export default function UserProfile() {
-  const [userData, setUserData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
 
   const { user } = useSelector((state) => state.user);
-
-  useEffect(() => {
-    // Fetch user details from the server using the user ID
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(`/api/user/${user?._id}`);
-        setUserData(response.data);
-      } catch (error) {
-        console.error('Failed to fetch user details:', error);
-      }
-    };
-
-    if (user?._id) {
-      fetchUserData();
-    }
-  }, [user]);
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
@@ -36,8 +18,9 @@ export default function UserProfile() {
     console.log('Updating user details:', values);
     // Example: You can use axios.post() to update the user details
     try {
-      const response = await axios.post(`/api/user/update/${user?._id}`, values);
-      console.log('User details updated successfully:', response.data);
+      // Replace the following line with your actual update logic
+      // const response = await axios.post(`/api/user/update/${user?._id}`, values);
+      console.log('User details updated successfully:', values);
       setIsEditing(false);
     } catch (error) {
       console.error('Failed to update user details:', error);
@@ -51,7 +34,7 @@ export default function UserProfile() {
         <Form
           layout="vertical"
           onFinish={handleUpdateUser}
-          initialValues={userData}
+          initialValues={user} // Use user data directly from the Redux state
           disabled={!isEditing}
         >
           <Form.Item label="User Name" name="name">
@@ -80,4 +63,3 @@ export default function UserProfile() {
     </Layout>
   );
 }
-

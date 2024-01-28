@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../../components/layout';
 import { Card, Form, Input, Button } from 'antd';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
+import axios from 'axios';  // Import axios
 
-const AdminProfile = () => {
+export default function UserProfile() {
   const [userData, setUserData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
 
@@ -79,6 +79,3 @@ const AdminProfile = () => {
     </Layout>
   );
 }
-
-export default AdminProfile;
-
