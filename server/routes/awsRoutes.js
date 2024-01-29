@@ -141,33 +141,40 @@ router.post("/send-motor-pump", async (req, res) => {
   }
 });
 
-// Move this outside of the router.post endpoint
+// Move waterLevelModels and isSaving outside the route handler
+let waterLevelModels;
+let isSaving = false;
+
 device.on("message", async function (topic, payload) {
   try {
-    const receivedData = payload.toString();
-    latestWaterLevel = receivedData;
-    latestTopic = topic;
+    if (waterLevelModels) {
+      const receivedData = payload.toString();
+      latestWaterLevel = receivedData;
+      latestTopic = topic;
 
-    console.log(`Received message on topic ${topic}:`, receivedData);
+      console.log(`Received message on topic ${topic}:`, receivedData);
 
-    if (
-      receivedData != null &&
-      receivedData != waterLevelModels.waterLevel &&
-      !isSaving
-    ) {
-      try {
-        isSaving = true;
+      if (
+        receivedData != null &&
+        receivedData != waterLevelModels.waterLevel &&
+        !isSaving
+      ) {
+        try {
+          isSaving = true;
 
-        // Introduce a delay before saving
-        await new Promise((resolve) => setTimeout(resolve, 3000));
+          // Introduce a delay before saving
+          await new Promise((resolve) => setTimeout(resolve, 3000));
 
-        waterLevelModels.waterLevel = receivedData;
-        await waterLevelModels.save();
+          waterLevelModels.waterLevel = receivedData;
+          await waterLevelModels.save();
 
-        isSaving = false;
-      } catch (error) {
-        console.error("Error:", error);
+          isSaving = false;
+        } catch (error) {
+          console.error("Error:", error);
+        }
       }
+    } else {
+      console.error("waterLevelModels is not defined");
     }
   } catch (error) {
     console.error("Error:", error);
@@ -179,7 +186,7 @@ router.post("/receive-water-level", async (req, res) => {
     console.log("Connected to AWS IoT");
 
     if (req.body.userId) {
-      const waterLevelModels = await waterLevelModel.findOne({
+      waterLevelModels = await waterLevelModel.findOne({
         userId: req.body.userId,
       });
 
@@ -209,6 +216,7 @@ router.post("/receive-water-level", async (req, res) => {
     });
   }
 });
+
 
 
 module.exports = router;
