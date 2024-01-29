@@ -75,7 +75,7 @@ router.post("/send-input-valve", async (req, res) => {
     });
 
     try {
-      var dynamicData = "Hiiii";
+    
 
       device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
       console.log(`${waterLevelModels.tankId}/sub`);
@@ -119,7 +119,7 @@ router.post("/send-motor-pump", async (req, res) => {
     });
 
     try {
-      var dynamicData = "hiiiiiii";
+     
 
       device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
       console.log(`${waterLevelModels.tankId}/sub`);
@@ -142,7 +142,7 @@ router.post("/receive-water-level", async (req, res) => {
         userId: req.body.userId,
       });
 
-      console.log("Water Level:", waterLevelModels.waterLevel);
+ 
 
       try {
         console.log(`${waterLevelModels.tankId}/pub`);
