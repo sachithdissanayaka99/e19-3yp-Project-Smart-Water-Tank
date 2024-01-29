@@ -40,7 +40,7 @@ app.use('/admin/api/user', userRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/user/hardware', hardwareRoutes);
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 
 console.log(process.env.MONGO_URL);
 
