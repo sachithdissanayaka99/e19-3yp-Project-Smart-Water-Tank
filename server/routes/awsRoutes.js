@@ -142,30 +142,34 @@ router.post("/receive-water-level", async (req, res) => {
         userId: req.body.userId,
       });
 
- 
-
       try {
         console.log(`${waterLevelModels.tankId}/pub`);
 
         device.subscribe(`${waterLevelModels.tankId}/pub`);
 
-        device.on("message", function (topic, payload) {
-          let isSaving = false;
+        let isSaving = false; // Move this variable outside the event handler
 
+        device.on("message", async function (topic, payload) {
           try {
             const receivedData = payload.toString();
             latestWaterLevel = receivedData;
             latestTopic = topic;
 
             console.log(`Received message on topic ${topic}:`, receivedData);
+
             if (
               receivedData != null &&
               receivedData != waterLevelModels.waterLevel &&
               !isSaving
             ) {
               isSaving = true;
+
+              // Introduce a delay before saving
+              await new Promise((resolve) => setTimeout(resolve, 3000));
+
               waterLevelModels.waterLevel = receivedData;
-              waterLevelModels.save();
+              await waterLevelModels.save();
+
               isSaving = false;
             }
           } catch (error) {
@@ -194,5 +198,6 @@ router.post("/receive-water-level", async (req, res) => {
     });
   }
 });
+
 
 module.exports = router;
