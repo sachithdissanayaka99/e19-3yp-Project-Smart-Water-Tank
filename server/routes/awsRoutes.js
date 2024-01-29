@@ -75,8 +75,6 @@ router.post("/send-input-valve", async (req, res) => {
     });
 
     try {
-    
-
       device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
       console.log(`${waterLevelModels.tankId}/sub`);
 
@@ -84,7 +82,11 @@ router.post("/send-input-valve", async (req, res) => {
     } catch (err) {
       res
         .status(500)
-        .send({ message: "Error sending data to AWS IoT", success: false, err });
+        .send({
+          message: "Error sending data to AWS IoT",
+          success: false,
+          err,
+        });
     }
   }
 });
@@ -106,7 +108,11 @@ router.post("/send-output-valve", async (req, res) => {
     } catch (err) {
       res
         .status(500)
-        .send({ message: "Error sending data to AWS IoT", success: false, err });
+        .send({
+          message: "Error sending data to AWS IoT",
+          success: false,
+          err,
+        });
     }
   }
 });
@@ -119,8 +125,6 @@ router.post("/send-motor-pump", async (req, res) => {
     });
 
     try {
-     
-
       device.publish(`${waterLevelModels.tankId}/sub`, req.body.string);
       console.log(`${waterLevelModels.tankId}/sub`);
 
@@ -128,7 +132,11 @@ router.post("/send-motor-pump", async (req, res) => {
     } catch (err) {
       res
         .status(500)
-        .send({ message: "Error sending data to AWS IoT", success: false, err });
+        .send({
+          message: "Error sending data to AWS IoT",
+          success: false,
+          err,
+        });
     }
   }
 });
@@ -162,15 +170,19 @@ router.post("/receive-water-level", async (req, res) => {
               receivedData != waterLevelModels.waterLevel &&
               !isSaving
             ) {
-              isSaving = true;
+              try {
+                isSaving = true;
 
-              // Introduce a delay before saving
-              await new Promise((resolve) => setTimeout(resolve, 3000));
+                // Introduce a delay before saving
+                await new Promise((resolve) => setTimeout(resolve, 3000));
 
-              waterLevelModels.waterLevel = receivedData;
-              await waterLevelModels.save();
+                waterLevelModels.waterLevel = receivedData;
+                await waterLevelModels.save();
 
-              isSaving = false;
+                isSaving = false;
+              } catch (error) {
+                console.error("Error:", error);
+              }
             }
           } catch (error) {
             console.error("Error:", error);
@@ -198,6 +210,5 @@ router.post("/receive-water-level", async (req, res) => {
     });
   }
 });
-
 
 module.exports = router;
